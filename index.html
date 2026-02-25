@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">My<span>Portfolio</span></div>
+      <nav class="nav" id="nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero / Home -->
+    <section id="home" class="section hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Hello, I'm</p>
+          <h1>Your Name</h1>
+          <p class="subtitle">A passionate <span class="accent">Web Developer</span> crafting modern and responsive web experiences.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn primary">View Projects</a>
+            <a href="#contact" class="btn ghost">Contact Me</a>
+          </div>
+          <div class="hero-meta">
+            <div>
+              <span class="label">Location</span>
+              <span class="value">Your City, Country</span>
+            </div>
+            <div>
+              <span class="label">Email</span>
+              <span class="value">youremail@example.com</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="avatar-placeholder">
+            <span>Photo</span>
+          </div>
+          <div class="hero-card-body">
+            <h2>Front-End Developer</h2>
+            <p>Specialized in building clean, user-friendly interfaces with modern web technologies.</p>
+            <ul class="hero-tags">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>Responsive Design</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">About</p>
+          <h2>About Me</h2>
+          <p class="section-description">
+            Write a short paragraph here about who you are, your background, and what you love to build.
+          </p>
+        </div>
+        <div class="about-grid">
+          <div>
+            <h3>Background</h3>
+            <p>
+              You can describe your education, experience, or journey into web development here.
+            </p>
+          </div>
+          <div>
+            <h3>What I Do</h3>
+            <p>
+              Mention the kind of work you do: front-end, back-end, full-stack, UI/UX, etc.
+            </p>
+          </div>
+          <div>
+            <h3>Goals</h3>
+            <p>
+              Describe your current goals, what you're learning, or the type of roles you're looking for.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Skills</p>
+          <h2>Tech Stack</h2>
+          <p class="section-description">
+            A quick overview of the tools and technologies I work with.
+          </p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Frontend</h3>
+            <ul>
+              <li>HTML5 / CSS3</li>
+              <li>JavaScript (ES6+)</li>
+              <li>Responsive Design</li>
+              <li>Bootstrap / Tailwind (optional)</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3>Backend</h3>
+            <ul>
+              <li>Java / Spring (example)</li>
+              <li>Node.js (example)</li>
+              <li>REST APIs</li>
+              <li>SQL / Databases</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3>Tools & Others</h3>
+            <ul>
+              <li>Git & GitHub</li>
+              <li>VS Code / IntelliJ</li>
+              <li>Figma (basic)</li>
+              <li>Agile / Scrum</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Projects</p>
+          <h2>Featured Work</h2>
+          <p class="section-description">
+            Highlight some of your best projects. Replace these cards with your real work.
+          </p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-badge">Web App</div>
+            <h3>Project One</h3>
+            <p>
+              Short description of the project, what problem it solves, and what technologies you used.
+            </p>
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">Source Code</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-badge">Website</div>
+            <h3>Project Two</h3>
+            <p>
+              Another project description. Talk about your role, challenges, and results.
+            </p>
+            <div class="project-tags">
+              <span>React</span>
+              <span>API</span>
+              <span>UI Design</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">Source Code</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-badge">Mobile Friendly</div>
+            <h3>Project Three</h3>
+            <p>
+              Describe a responsive project that works great on all devices.
+            </p>
+            <div class="project-tags">
+              <span>Responsive</span>
+              <span>Accessibility</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">Source Code</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Contact</p>
+          <h2>Get In Touch</h2>
+          <p class="section-description">
+            Interested in working together or have a question? Send me a message.
+          </p>
+        </div>
+        <div class="contact-grid">
+          <div>
+            <h3>Contact Details</h3>
+            <ul class="contact-list">
+              <li><span class="label">Email:</span> <span>youremail@example.com</span></li>
+              <li><span class="label">Phone:</span> <span>+1 234 567 890</span></li>
+              <li><span class="label">Location:</span> <span>Your City, Country</span></li>
+            </ul>
+          </div>
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required />
+                <small class="error-message"></small>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required />
+                <small class="error-message"></small>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+              <small class="error-message"></small>
+            </div>
+            <button type="submit" class="btn primary full-width">Send Message</button>
+            <p class="form-status" id="formStatus" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
