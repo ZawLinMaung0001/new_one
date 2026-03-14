@@ -1,0 +1,683 @@
+[
+  {
+    "question": "What are three primary benefits of using VLANs? (Choose three.)",
+    "image": "",
+    "options": [
+      "security",
+      "a reduction in the number of trunk links",
+      "cost reduction",
+      "end user satisfaction",
+      "improved IT staff efficiency",
+      "no required configuration"
+    ],
+    "answer": "security",
+    "answers": [
+      "security",
+      "cost reduction",
+      "improved IT staff efficiency"
+    ]
+  },
+  {
+    "question": "Which type of VLAN is used to designate which traffic is untagged when crossing a trunk port?",
+    "image": "",
+    "options": [
+      "data",
+      "default",
+      "native",
+      "management"
+    ],
+    "answer": "native"
+  },
+  {
+    "question": "A network administrator is determining the best placement of VLAN trunk links. Which two types of point-to-point connections utilize VLAN trunking?​ (Choose two.)",
+    "image": "",
+    "options": [
+      "between two switches that utilize multiple VLANs",
+      "between a switch and a client PC",
+      "between a switch and a server that has an 802.1Q NIC",
+      "between a switch and a network printer",
+      "between two switches that share a common VLAN"
+    ],
+    "answer": "between two switches that utilize multiple VLANs",
+    "answers": [
+      "between two switches that utilize multiple VLANs",
+      "between a switch and a server that has an 802.1Q NIC"
+    ]
+  },
+  {
+    "question": "What must the network administrator do to remove Fast Ethernet port fa0/1 from VLAN 2 and assign it to VLAN 3?",
+    "image": "",
+    "options": [
+      "Enter the no vlan 2 and the vlan 3 commands in global configuration mode.",
+      "Enter the switchport access vlan 3 command in interface configuration mode.",
+      "Enter the switchport trunk native vlan 3 command in interface configuration mode.",
+      "Enter the no shutdown command in interface configuration mode to return it to the default configuration and then configure the port for VLAN 3."
+    ],
+    "answer": "Enter the switchport access vlan 3 command in interface configuration mode."
+  },
+  {
+    "question": "When a Cisco switch receives untagged frames on a 802.1Q trunk port, which VLAN ID is the traffic switched to by default?",
+    "image": "",
+    "options": [
+      "unused VLAN ID",
+      "native VLAN ID",
+      "data VLAN ID",
+      "management VLAN ID"
+    ],
+    "answer": "native VLAN ID"
+  },
+  {
+    "question": "Port Fa0/11 on a switch is assigned to VLAN 30. If the command no switchport access vlan 30 is entered on the Fa0/11 interface, what will happen?",
+    "image": "",
+    "options": [
+      "Port Fa0/11 will be shutdown.",
+      "An error message would be displayed.",
+      "Port Fa0/11 will be returned to VLAN 1.",
+      "VLAN 30 will be deleted."
+    ],
+    "answer": "Port Fa0/11 will be returned to VLAN 1."
+  },
+  {
+    "question": "Which command is used to remove only VLAN 20 from a switch?",
+    "image": "",
+    "options": [
+      "delete vlan.dat",
+      "delete flash:vlan.dat",
+      "no vlan 20",
+      "no switchport access vlan 20"
+    ],
+    "answer": "no vlan 20"
+  },
+  {
+    "question": "What happens to a port that is associated with VLAN 10 when the administrator deletes VLAN 10 from the switch?",
+    "image": "",
+    "options": [
+      "The port becomes inactive.",
+      "The port goes back to the default VLAN.",
+      "The port automatically associates itself with the native VLAN.",
+      "The port creates the VLAN again."
+    ],
+    "answer": "The port becomes inactive."
+  },
+  {
+    "question": "Which two characteristics match extended range VLANs? (Choose two.)",
+    "image": "",
+    "options": [
+      "CDP can be used to learn and store these VLANs.",
+      "VLAN IDs exist between 1006 to 4094.",
+      "They are saved in the running-config file by default.",
+      "VLANs are initialized from flash memory.",
+      "They are commonly used in small networks."
+    ],
+    "answer": "VLAN IDs exist between 1006 to 4094.",
+    "answers": [
+      "VLAN IDs exist between 1006 to 4094.",
+      "They are saved in the running-config file by default."
+    ]
+  },
+  {
+    "question": "A Cisco switch currently allows traffic tagged with VLANs 10 and 20 across trunk port Fa0/5. What is the effect of issuing a switchport trunk allowed vlan 30 command on Fa0/5?",
+    "image": "",
+    "options": [
+      "It allows VLANs 1 to 30 on Fa0/5.",
+      "It allows VLANs 10, 20, and 30 on Fa0/5.",
+      "It allows only VLAN 30 on Fa0/5.",
+      "It allows a native VLAN of 30 to be implemented on Fa0/5."
+    ],
+    "answer": "It allows only VLAN 30 on Fa0/5."
+  },
+  {
+    "question": "Refer to the exhibit. PC-A and PC-B are both in VLAN 60. PC-A is unable to communicate with PC-B. What is the problem?",
+    "image": "images/chapter6-q11.png",
+    "options": [
+      "The native VLAN should be VLAN 60.",
+      "The native VLAN is being pruned from the link.",
+      "The trunk has been configured with the switchport nonegotiate command.",
+      "The VLAN that is used by PC-A is not in the list of allowed VLANs on the trunk."
+    ],
+    "answer": "The VLAN that is used by PC-A is not in the list of allowed VLANs on the trunk."
+  },
+  {
+    "question": "Refer to the exhibit. DLS1 is connected to another switch, DLS2, via a trunk link. A host that is connected to DLS1 is not able to communicate to a host that is connected to DLS2, even though they are both in VLAN 99. Which command should be added to Fa0/1 on DLS1 to correct the problem?",
+    "image": "images/chapter6-q12.png",
+    "options": [
+      "switchport nonegotiate",
+      "switchport mode dynamic auto",
+      "switchport trunk native vlan 66",
+      "switchport trunk allowed vlan add 99"
+    ],
+    "answer": "switchport trunk native vlan 66"
+  },
+  {
+    "question": "What is a characteristic of legacy inter-VLAN routing?",
+    "image": "",
+    "options": [
+      "Only one VLAN can be used in the topology.",
+      "The router requires one Ethernet link for each VLAN.",
+      "The user VLAN must be the same ID number as the management VLAN.",
+      "Inter-VLAN routing must be performed on a switch instead of a router."
+    ],
+    "answer": "The router requires one Ethernet link for each VLAN."
+  },
+  {
+    "question": "Which four steps are needed to configure a voice VLAN on a switch port? (Choose four).",
+    "image": "",
+    "options": [
+      "Configure the switch port in access mode.",
+      "Assign a data VLAN to the switch port.",
+      "Add a voice VLAN.",
+      "Assign the voice VLAN to the switch port.",
+      "Activate spanning-tree PortFast on the interface.",
+      "Ensure that voice traffic is trusted and tagged with a CoS priority value.",
+      "Configure the switch port interface with subinterfaces.",
+      "Configure the interface as an IEEE 802.1Q trunk."
+    ],
+    "answer": "Configure the switch port in access mode.",
+    "answers": [
+      "Configure the switch port in access mode.",
+      "Add a voice VLAN.",
+      "Assign the voice VLAN to the switch port.",
+      "Ensure that voice traffic is trusted and tagged with a CoS priority value."
+    ]
+  },
+  {
+    "question": "What is a disadvantage of using router-on-a-stick inter-VLAN routing?",
+    "image": "",
+    "options": [
+      "does not support VLAN-tagged packets",
+      "requires the use of more physical interfaces than legacy inter-VLAN routing",
+      "does not scale well beyond 50 VLANs",
+      "requires the use of multiple router interfaces configured to operate as access links"
+    ],
+    "answer": "does not scale well beyond 50 VLANs"
+  },
+  {
+    "question": "Refer to the exhibit. Router RA receives a packet with a source address of 192.168.1.35 and a destination address of 192.168.1.85. What will the router do with this packet?",
+    "image": "images/chapter6-q16.png",
+    "options": [
+      "The router will drop the packet.",
+      "The router will forward the packet out interface FastEthernet 0/1.1.",
+      "The router will forward the packet out interface FastEthernet 0/1.2.",
+      "The router will forward the packet out interface FastEthernet 0/1.3.",
+      "The router will forward the packet out interface FastEthernet 0/1.2 and interface FastEthernet 0/1.3."
+    ],
+    "answer": "The router will forward the packet out interface FastEthernet 0/1.2."
+  },
+  {
+    "question": "Refer to the exhibit. In what switch mode should port G0/1 be assigned if Cisco best practices are being used?",
+    "image": "images/chapter6-q17.png",
+    "options": [
+      "access",
+      "trunk",
+      "native",
+      "auto"
+    ],
+    "answer": "trunk"
+  },
+  {
+    "question": "A small college uses VLAN 10 for the classroom network and VLAN 20 for the office network. What is needed to enable communication between these two VLANs while using legacy inter-VLAN routing?",
+    "image": "",
+    "options": [
+      "A router with at least two LAN interfaces should be used.",
+      "Two groups of switches are needed, each with ports that are configured for one VLAN.",
+      "A router with one VLAN interface is needed to connect to the SVI on a switch.",
+      "A switch with a port that is configured as trunk is needed to connect to a router."
+    ],
+    "answer": "A router with at least two LAN interfaces should be used."
+  },
+  {
+    "question": "Refer to the exhibit. A network administrator needs to configure router-on-a-stick for the networks that are shown. How many subinterfaces will have to be created on the router if each VLAN that is shown is to be routed and each VLAN has its own subinterface?",
+    "image": "images/chapter6-q19.png",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "answer": "4"
+  },
+  {
+    "question": "When configuring a router as part of a router-on-a-stick inter-VLAN routing topology, where should the IP address be assigned?",
+    "image": "",
+    "options": [
+      "to the interface",
+      "to the subinterface",
+      "to the SVI",
+      "to the VLAN"
+    ],
+    "answer": "to the subinterface"
+  },
+  {
+    "question": "A high school uses VLAN15 for the laboratory network and VLAN30 for the faculty network. What is required to enable communication between these two VLANs while using the router-on-a-stick approach?",
+    "image": "",
+    "options": [
+      "A multilayer switch is needed.",
+      "A router with at least two LAN interfaces is needed.",
+      "Two groups of switches are needed, each with ports that are configured for one VLAN.",
+      "A switch with a port that is configured as a trunk is needed when connecting to the router."
+    ],
+    "answer": "A switch with a port that is configured as a trunk is needed when connecting to the router."
+  },
+  {
+    "question": "Refer to the exhibit. A router-on-a-stick configuration was implemented for VLANs 15, 30, and 45, according to the show running-config command output. PCs on VLAN 45 that are using the 172.16.45.0 /24 network are having trouble connecting to PCs on VLAN 30 in the 172.16.30.0 /24 network. Which error is most likely causing this problem?​",
+    "image": "images/chapter6-q22.png",
+    "options": [
+      "The wrong VLAN has been configured on GigabitEthernet 0/0.45.",
+      "The command no shutdown is missing on GigabitEthernet 0/0.30.",
+      "The GigabitEthernet 0/0 interface is missing an IP address.",
+      "There is an incorrect IP address configured on GigabitEthernet 0/0.30."
+    ],
+    "answer": "There is an incorrect IP address configured on GigabitEthernet 0/0.30."
+  },
+  {
+    "question": "Match the IEEE 802.1Q standard VLAN tag field with the descriptions. (Not all options are used.)",
+    "image": "images/chapter6-q23.jpg",
+    "options": [
+      "PC-A, PC-B",
+      "PC-D, PC-E",
+      "PC-A, PC-B, PC-E",
+      "PC-A, PC-B, PC-D, PC-E",
+      "PC-A, PC-B, PC-D, PC-E, PC-F"
+    ],
+    "answer": "PC-D, PC-E"
+  },
+  {
+    "question": "Fill in the blank. Use the full command syntax.",
+    "image": "images/chapter6-q24.jpg",
+    "options": [
+      "PC-A, PC-B",
+      "PC-D, PC-E",
+      "PC-A, PC-B, PC-E",
+      "PC-A, PC-B, PC-D, PC-E",
+      "PC-A, PC-B, PC-D, PC-E, PC-F"
+    ],
+    "answer": "PC-D, PC-E"
+  },
+  {
+    "question": "Open the PT Activity. Perform the tasks in the activity instructions and then answer the question.",
+    "image": "images/chapter6-q25.jpg",
+    "options": [
+      "PC-A, PC-B",
+      "PC-D, PC-E",
+      "PC-A, PC-B, PC-E",
+      "PC-A, PC-B, PC-D, PC-E",
+      "PC-A, PC-B, PC-D, PC-E, PC-F"
+    ],
+    "answer": "PC-D, PC-E"
+  },
+  {
+    "question": "Refer to the exhibit. What command would be used to configure a static route on R1 so that traffic from both LANs can reach the 2001:db8:1:4::/64 remote network?",
+    "image": "images/chapter6-q26.jpg",
+    "options": [
+      "ipv6 route ::/0 serial0/0/0",
+      "ipv6 route 2001:db8:1:4::/64 2001:db8:1:3::1",
+      "ipv6 route 2001:db8:1:4::/64 2001:db8:1:3::2",
+      "ipv6 route 2001:db8:1::/65 2001:db8:1:3::1"
+    ],
+    "answer": "ipv6 route 2001:db8:1:4::/64 2001:db8:1:3::2"
+  },
+  {
+    "question": "Refer to the exhibit. The network engineer for the company that is shown wants to use the primary ISP connection for all external connectivity. The backup ISP connection is used only if the primary ISP connection fails. Which set of commands would accomplish this goal?",
+    "image": "images/chapter6-q27.jpg",
+    "options": [
+      "ip route 198.133.219.24 255.255.255.252 ip route 64.100.210.80 255.255.255.252",
+      "ip route 198.133.219.24 255.255.255.252 ip route 64.100.210.80 255.255.255.252 10",
+      "ip route 0.0.0.0 0.0.0.0 s0/0/0 ip route 0.0.0.0 0.0.0.0 s0/1/0",
+      "ip route 0.0.0.0 0.0.0.0 s0/0/0 ip route 0.0.0.0 0.0.0.0 s0/1/0 10"
+    ],
+    "answer": "ip route 0.0.0.0 0.0.0.0 s0/0/0 ip route 0.0.0.0 0.0.0.0 s0/1/0 10"
+  },
+  {
+    "question": "Refer to the exhibit. What routing solution will allow both PC A and PC B to access the Internet with the minimum amount of router CPU and network bandwidth utilization?",
+    "image": "images/chapter6-q28.jpg",
+    "options": [
+      "Configure a static route from R1 to Edge and a dynamic route from Edge to R1.",
+      "Configure a static default route from R1 to Edge, a default route from Edge to the Internet, and a static route from Edge to R1.",
+      "Configure a dynamic route from R1 to Edge and a static route from Edge to R1.",
+      "Configure a dynamic routing protocol between R1 and Edge and advertise all routes."
+    ],
+    "answer": "Configure a static default route from R1 to Edge, a default route from Edge to the Internet, and a static route from Edge to R1."
+  },
+  {
+    "question": "What are two advantages of static routing over dynamic routing? (Choose two.)",
+    "image": "",
+    "options": [
+      "Static routing is more secure because it does not advertise over the network.",
+      "Static routing scales well with expanding networks.",
+      "Static routing requires very little knowledge of the network for correct implementation.",
+      "Static routing uses fewer router resources than dynamic routing.",
+      "Static routing is relatively easy to configure for large networks."
+    ],
+    "answer": "Static routing is more secure because it does not advertise over the network.",
+    "answers": [
+      "Static routing is more secure because it does not advertise over the network.",
+      "Static routing uses fewer router resources than dynamic routing."
+    ]
+  },
+  {
+    "question": "What type of route allows a router to forward packets even though its routing table contains no specific route to the destination network?",
+    "image": "",
+    "options": [
+      "dynamic route",
+      "default route",
+      "destination route",
+      "generic route"
+    ],
+    "answer": "default route"
+  },
+  {
+    "question": "Why would a floating static route be configured with an administrative distance that is higher than the administrative distance of a dynamic routing protocol that is running on the same router?",
+    "image": "",
+    "options": [
+      "to be used as a backup route",
+      "to load-balance the traffic",
+      "to act as a gateway of last resort",
+      "to be the priority route in the routing table"
+    ],
+    "answer": "to be used as a backup route"
+  },
+  {
+    "question": "What is the correct syntax of a floating static route?",
+    "image": "",
+    "options": [
+      "ip route 209.165.200.228 255.255.255.248 serial 0/0/0",
+      "ip route 209.165.200.228 255.255.255.248 10.0.0.1 120",
+      "ip route 0.0.0.0 0.0.0.0 serial 0/0/0",
+      "ip route 172.16.0.0 255.248.0.0 10.0.0.1"
+    ],
+    "answer": "ip route 209.165.200.228 255.255.255.248 10.0.0.1 120"
+  },
+  {
+    "question": "Which type of static route that is configured on a router uses only the exit interface?",
+    "image": "",
+    "options": [
+      "recursive static route",
+      "directly connected static route",
+      "fully specified static route",
+      "default static route"
+    ],
+    "answer": "directly connected static route"
+  },
+  {
+    "question": "Refer to the graphic. Which command would be used on router A to configure a static route to direct traffic from LAN A that is destined for LAN C?",
+    "image": "images/chapter6-q34.png",
+    "options": [
+      "A(config)# ip route 192.168.4.0 255.255.255.0 192.168.5.2",
+      "A(config)# ip route 192.168.4.0 255.255.255.0 192.168.3.2",
+      "A(config)# ip route 192.168.5.0 255.255.255.0 192.168.3.2",
+      "A(config)# ip route 192.168.3.0 255.255.255.0 192.168.3.1",
+      "A(config)# ip route 192.168.3.2 255.255.255.0 192.168.4.0"
+    ],
+    "answer": "A(config)# ip route 192.168.4.0 255.255.255.0 192.168.3.2"
+  },
+  {
+    "question": "The network administrator configures the router with the ip route 172.16.1.0 255.255.255.0 172.16.2.2 command. How will this route appear in the routing table?",
+    "image": "",
+    "options": [
+      "C 172.16.1.0 is directly connected, Serial0/0",
+      "S 172.16.1.0 is directly connected, Serial0/0",
+      "C 172.16.1.0 [1/0] via 172.16.2.2",
+      "S 172.16.1.0 [1/0] via 172.16.2.2"
+    ],
+    "answer": "S 172.16.1.0 [1/0] via 172.16.2.2"
+  },
+  {
+    "question": "Refer to the exhibit. R1 receives a packet destined for the IP address 192.168.2.10. Out which interface will R1 forward the packet?",
+    "image": "images/chapter6-q36.jpg",
+    "options": [
+      "FastEthernet0/0",
+      "FastEthernet0/1",
+      "Serial0/0/0",
+      "Serial0/0/1"
+    ],
+    "answer": "Serial0/0/1"
+  },
+  {
+    "question": "Refer to the exhibit. The network administrator needs to configure a default route on the Border router. Which command would the administrator use to configure a default route that will require the least amount of router processing when forwarding packets?",
+    "image": "images/chapter6-q37.png",
+    "options": [
+      "Border(config)# ip route 0.0.0.0 0.0.0.0 198.133.219.5",
+      "Border(config)# ip route 0.0.0.0 0.0.0.0 198.133.219.6",
+      "Border(config)# ip route 0.0.0.0 0.0.0.0 s0/0/1",
+      "Border(config)# ip route 0.0.0.0 0.0.0.0 s0/0/0"
+    ],
+    "answer": "Border(config)# ip route 0.0.0.0 0.0.0.0 s0/0/1"
+  },
+  {
+    "question": "What two pieces of information are needed in a fully specified static route to eliminate recursive lookups? (Choose two.)",
+    "image": "",
+    "options": [
+      "the interface ID exit interface",
+      "the interface ID of the next-hop neighbor",
+      "the IP address of the next-hop neighbor",
+      "the administrative distance for the destination network",
+      "the IP address of the exit interface"
+    ],
+    "answer": "the interface ID exit interface",
+    "answers": [
+      "the interface ID exit interface",
+      "the IP address of the next-hop neighbor"
+    ]
+  },
+  {
+    "question": "A network administrator issues the show vlan brief command while troubleshooting a user support ticket. What output will be displayed?",
+    "image": "",
+    "options": [
+      "the VLAN assignment and membership for all switch ports",
+      "the VLAN assignment and trunking encapsulation",
+      "the VLAN assignment and native VLAN",
+      "the VLAN assignment and membership for device MAC addresses"
+    ],
+    "answer": "the VLAN assignment and membership for all switch ports"
+  },
+  {
+    "question": "Refer to the exhibit. Which default static route command would allow R1 to potentially reach all unknown networks on the Internet?",
+    "image": "images/chapter6-q40.gif",
+    "options": [
+      "R1(config)# ipv6 route 2001:db8:32::/64 G0/0",
+      "R1(config)# ipv6 route ::/0 G0/0 fe80::2",
+      "R1(config)# ipv6 route ::/0 G0/1 fe80::2",
+      "R1(config)# ipv6 route 2001:db8:32::/64 G0/1 fe80::2"
+    ],
+    "answer": "R1(config)# ipv6 route ::/0 G0/1 fe80::2"
+  },
+  {
+    "question": "Which two statements describe classful IP addresses? (Choose two.)",
+    "image": "",
+    "options": [
+      "It is possible to determine which class an address belongs to by reading the first bit.",
+      "The number of bits used to identify the hosts is fixed by the class of the network.",
+      "Only Class A addresses can be represented by high-order bits 100.",
+      "Up to 24 bits can make up the host portion of a Class C address.",
+      "All subnets in a network are the same size.",
+      "Three of the five classes of addresses are reserved for multicasts and experimental use."
+    ],
+    "answer": "The number of bits used to identify the hosts is fixed by the class of the network.",
+    "answers": [
+      "The number of bits used to identify the hosts is fixed by the class of the network.",
+      "All subnets in a network are the same size."
+    ]
+  },
+  {
+    "question": "What would be the first step in calculating a summarized route for 5 networks?",
+    "image": "",
+    "options": [
+      "Starting from the far right, determine the octet in which all the numbers are the same.",
+      "Determine the network with the lowest number.",
+      "Write all network numbers in binary.",
+      "Write all subnet masks in binary."
+    ],
+    "answer": "Write all network numbers in binary."
+  },
+  {
+    "question": "A company has several networks with the following IP address requirements:",
+    "image": "",
+    "options": [
+      "172.16.0.0/25",
+      "172.16.0.0/24",
+      "172.16.0.0/23",
+      "172.16.0.0/22"
+    ],
+    "answer": "172.16.0.0/24"
+  },
+  {
+    "question": "Consider the following command: ip route 192.168.10.0 255.255.255.0 10.10.10.2 5 How would an administrator test this configuration?",
+    "image": "",
+    "options": [
+      "Delete the default gateway route on the router.",
+      "Ping any valid address on the 192.168.10.0/24 network.",
+      "Manually shut down the router interface used as a primary route.",
+      "Ping from the 192.168.10.0 network to the 10.10.10.2 address."
+    ],
+    "answer": "Manually shut down the router interface used as a primary route."
+  },
+  {
+    "question": "What happens to a static route entry in a routing table when the outgoing interface associated with that route goes into the down state?",
+    "image": "",
+    "options": [
+      "The static route is removed from the routing table.",
+      "The router polls neighbors for a replacement route.",
+      "The static route remains in the table because it was defined as static.",
+      "The router automatically redirects the static route to use another interface."
+    ],
+    "answer": "The static route is removed from the routing table."
+  },
+  {
+    "question": "Refer to the exhibit. Which is the best way for PC A and PC B to successfully communicate with sites on the Internet?",
+    "image": "images/chapter6-q46.png",
+    "options": [
+      "Configure a static route from R1 to ISP and a dynamic route from ISP to R1.",
+      "Configure a default route from R1 to ISP and a static route from ISP to R1.",
+      "Configure a dynamic route from R1 to ISP and a static route from ISP to R1.",
+      "Configure a routing protocol between R1 and ISP and advertise all the routes."
+    ],
+    "answer": "Configure a default route from R1 to ISP and a static route from ISP to R1."
+  },
+  {
+    "question": "Refer to the exhibit. The small company shown uses static routing. Users on the R2 LAN have reported a problem with connectivity. What is the issue?",
+    "image": "images/chapter6-q47.png",
+    "options": [
+      "R2 needs a static route to the R1 LANs.",
+      "R1 and R2 must use a dynamic routing protocol.",
+      "R1 needs a default route to R2.",
+      "R1 needs a static route to the R2 LAN.",
+      "R2 needs a static route to the Internet."
+    ],
+    "answer": "R1 needs a static route to the R2 LAN."
+  },
+  {
+    "question": "What happens to a static route entry in a routing table when the outgoing interface is not available?",
+    "image": "",
+    "options": [
+      "The route is removed from the table.",
+      "The router polls neighbors for a replacement route.",
+      "The route remains in the table because it was defined as static.",
+      "The router redirects the static route to compensate for the loss of the next hop device."
+    ],
+    "answer": "The route is removed from the table."
+  },
+  {
+    "question": "A company has several networks with the following IP address requirements:",
+    "image": "",
+    "options": [
+      "utilize one public IP address to translate multiple private addresses",
+      "utilize multiple different subnet masks in the same IP address space",
+      "utilize one dynamic routing protocol throughout the entire network",
+      "utilize multiple routing protocols within an autonomous system",
+      "utilize one subnet mask throughout a hierarchical network"
+    ],
+    "answer": "utilize multiple different subnet masks in the same IP address space"
+  },
+  {
+    "question": "What would be the best summary route for the following networks? 10.50.168.0/23 10.50.170.0/23 10.50.172.0/23 10.50.174.0/24",
+    "image": "",
+    "options": [
+      "10.50.160.0/22",
+      "10.50.164.0/23",
+      "10.50.168.0/16",
+      "10.50.168.0/21",
+      "10.50.168.0/22",
+      "10.50.168.0/23"
+    ],
+    "answer": "10.50.168.0/21"
+  },
+  {
+    "question": "What is a valid summary route for IPv6 networks 2001:0DB8:ACAD:4::/64, 2001:0DB8:ACAD:5::/64, 2001:0DB8:ACAD:6::/64, and 2001:0DB8:ACAD:7::/64?",
+    "image": "",
+    "options": [
+      "2001:0DB8:ACAD:0000::/63",
+      "2001:0DB8:ACAD:0000::/64",
+      "2001:0DB8:ACAD:0004::/62",
+      "2001:0DB8:ACAD:0004::/63"
+    ],
+    "answer": "2001:0DB8:ACAD:0004::/62"
+  },
+  {
+    "question": "Which three IOS troubleshooting commands can help to isolate problems with a static route? (Choose three.)",
+    "image": "",
+    "options": [
+      "show ip route",
+      "show ip interface brief",
+      "ping",
+      "tracert",
+      "show arp",
+      "show version"
+    ],
+    "answer": "show ip route",
+    "answers": [
+      "show ip route",
+      "show ip interface brief",
+      "ping"
+    ]
+  },
+  {
+    "question": "Refer to the exhibit. What two commands will change the next-hop address for the 10.0.0.0/8 network from 172.16.40.2 to 192.168.1.2? (Choose two.)",
+    "image": "images/chapter6-q53.png",
+    "options": [
+      "A(config)# ip route 10.0.0.0 255.0.0.0 192.168.1.2",
+      "A(config)# ip route 10.0.0.0 255.0.0.0 s0/0/0",
+      "A(config)# no ip address 10.0.0.1 255.0.0.0 172.16.40.2",
+      "A(config)# no network 10.0.0.0 255.0.0.0 172.16.40.2",
+      "A(config)# no ip route 10.0.0.0 255.0.0.0 172.16.40.2"
+    ],
+    "answer": "A(config)# ip route 10.0.0.0 255.0.0.0 192.168.1.2",
+    "answers": [
+      "A(config)# ip route 10.0.0.0 255.0.0.0 192.168.1.2",
+      "A(config)# no ip route 10.0.0.0 255.0.0.0 172.16.40.2"
+    ]
+  },
+  {
+    "question": "Launch PT. Hide and Save PT",
+    "image": "images/chapter6-q54.png",
+    "options": [
+      "Webserver10",
+      "Main-Webserver",
+      "WWW-Server",
+      "MNSRV"
+    ],
+    "answer": "Webserver10"
+  },
+  {
+    "question": "Launch PT. Hide and Save PT",
+    "image": "images/chapter6-q55.png",
+    "options": [
+      "ipv6 route 2001:db8:10:12::/64 S0/0/1",
+      "ipv6 route 2001:db8:10:12::/64 2001:db8:32:77::1",
+      "ipv6 route 2001:db8:10:12::/64 S0/0/0",
+      "ipv6 route 2001:db8:10:12::/64 2001:db8:10:12::1"
+    ],
+    "answer": "ipv6 route 2001:db8:10:12::/64 S0/0/1"
+  },
+  {
+    "question": "Consider the following command: ip route 192.168.10.0 255.255.255.0 10.10.10.2 5 How would an administrator test this configuration?",
+    "image": "",
+    "options": [
+      "Ping from the 192.168.10.0 network to the 10.10.10.2 address.",
+      "Ping any valid address on the 192.168.10.0/24 network.",
+      "Delete the default gateway route on the router.",
+      "Manually shut down the router interface used as a primary route."
+    ],
+    "answer": "Manually shut down the router interface used as a primary route."
+  }
+]

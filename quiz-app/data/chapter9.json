@@ -1,0 +1,601 @@
+[
+  {
+    "question": "What is the primary purpose of NAT?",
+    "image": "",
+    "options": [
+      "conserve IPv4 addresses",
+      "allow peer-to-peer file sharing",
+      "enhance network performance",
+      "increase network security"
+    ],
+    "answer": "conserve IPv4 addresses"
+  },
+  {
+    "question": "Which method is used by a PAT-enabled router to send incoming packets to the correct inside hosts?​",
+    "image": "",
+    "options": [
+      "It uses the destination TCP or UDP port number on the incoming packet.",
+      "It uses the source TCP or UDP port number on the incoming packet.",
+      "It uses the source IP address on the incoming packet.",
+      "It uses a combination of the source TCP or UDP port number and the destination IP address on the incoming packet."
+    ],
+    "answer": "It uses the destination TCP or UDP port number on the incoming packet."
+  },
+  {
+    "question": "What are two benefits of NAT? (Choose two.)",
+    "image": "",
+    "options": [
+      "It makes troubleshooting routing issues easier.",
+      "It makes tunneling with IPsec less complicated.",
+      "It saves public IP addresses.",
+      "It increases routing performance.",
+      "It adds a degree of privacy and security to a network."
+    ],
+    "answer": "It saves public IP addresses.",
+    "answers": [
+      "It saves public IP addresses.",
+      "It adds a degree of privacy and security to a network."
+    ]
+  },
+  {
+    "question": "What is a disadvantage of NAT?",
+    "image": "",
+    "options": [
+      "There is no end-to-end addressing.",
+      "The router does not need to alter the checksum of the IPv4 packets.​",
+      "The costs of readdressing hosts can be significant for a publicly addressed network.​",
+      "The internal hosts have to use a single public IPv4 address for external communication."
+    ],
+    "answer": "There is no end-to-end addressing."
+  },
+  {
+    "question": "What is an advantage of deploying IPv4 NAT technology for internal hosts in an organization?",
+    "image": "",
+    "options": [
+      "increases the performance of packet transmission to the Internet",
+      "makes internal network access easy for outside hosts using UDP",
+      "provides flexibility in designing the IPv4 addressing scheme",
+      "enables the easy deployment of applications that require end-to-end traceability"
+    ],
+    "answer": "provides flexibility in designing the IPv4 addressing scheme"
+  },
+  {
+    "question": "Refer to the exhibit. Which address or addresses represent the inside global address?",
+    "image": "images/chapter9-q6.jpg",
+    "options": [
+      "192.168.0.100",
+      "10.1.1.2",
+      "any address in the 10.1.1.0 network",
+      "209.165.20.25"
+    ],
+    "answer": "209.165.20.25"
+  },
+  {
+    "question": "Refer to the exhibit. A technician is configuring R2 for static NAT to allow the client to access the web server. What is a possible reason that the client PC cannot access the web server?",
+    "image": "images/chapter9-q7.jpg",
+    "options": [
+      "The IP NAT statement is incorrect.",
+      "Interface Fa0/1 should be identified as the outside NAT interface.",
+      "Interface S0/0/0 should be identified as the outside NAT interface.",
+      "The configuration is missing a valid access control list."
+    ],
+    "answer": "Interface S0/0/0 should be identified as the outside NAT interface."
+  },
+  {
+    "question": "A network administrator configures the border router with the command R1(config)# ip nat inside source list 4 pool corp. What is required to be configured in order for this particular command to be functional?",
+    "image": "",
+    "options": [
+      "a NAT pool named corp that defines the starting and ending public IP addresses",
+      "an access list numbered 4 that defines the starting and ending public IP addresses",
+      "ip nat outside to be enabled on the interface that connects to the LAN affected by the NAT",
+      "an access list named corp that defines the private addresses that are affected by NAT",
+      "a VLAN named corp to be enabled and active and routed by R1"
+    ],
+    "answer": "a NAT pool named corp that defines the starting and ending public IP addresses"
+  },
+  {
+    "question": "When dynamic NAT without overloading is being used, what happens if seven users attempt to access a public server on the Internet when only six addresses are available in the NAT pool?",
+    "image": "",
+    "options": [
+      "No users can access the server.",
+      "The request to the server for the seventh user fails.",
+      "All users can access the server.",
+      "The first user gets disconnected when the seventh user makes the request."
+    ],
+    "answer": "The request to the server for the seventh user fails."
+  },
+  {
+    "question": "What is defined by the ip nat pool command when configuring dynamic NAT?",
+    "image": "",
+    "options": [
+      "the range of external IP addresses that internal hosts are permitted to access",
+      "the pool of available NAT servers",
+      "the range of internal IP addresses that are translated",
+      "the pool of global address"
+    ],
+    "answer": "the pool of global address"
+  },
+  {
+    "question": "Refer to the exhibit. What is the purpose of the command marked with an arrow shown in the partial configuration output of a Cisco broadband router?",
+    "image": "images/chapter9-q11.png",
+    "options": [
+      "defines which addresses are allowed into the router",
+      "defines which addresses can be translated",
+      "defines which addresses are assigned to a NAT pool",
+      "defines which addresses are allowed out of the router"
+    ],
+    "answer": "defines which addresses can be translated"
+  },
+  {
+    "question": "A network engineer has configured a router with the command ip nat inside source list 4 pool corp overload. Why did the engineer use the overload option?",
+    "image": "",
+    "options": [
+      "The company router must throttle or buffer traffic because the processing power of the router is not enough to handle the normal load of external-bound Internet traffic.",
+      "The company has more private IP addresses than available public IP addresses.",
+      "The company needs to have more public IP addresses available to be used on the Internet.",
+      "The company has a small number of servers that should be accessible by clients from the Internet."
+    ],
+    "answer": "The company has more private IP addresses than available public IP addresses."
+  },
+  {
+    "question": "What are two of the required steps to configure PAT? (Choose two.)",
+    "image": "",
+    "options": [
+      "Create a standard access list to define applications that should be translated.",
+      "Define a pool of global addresses to be used for overload translation.",
+      "Define the range of source ports to be used.",
+      "Define the hello and interval timers to match the adjacent neighbor router.",
+      "Identify the inside interface."
+    ],
+    "answer": "Define a pool of global addresses to be used for overload translation.",
+    "answers": [
+      "Define a pool of global addresses to be used for overload translation.",
+      "Identify the inside interface."
+    ]
+  },
+  {
+    "question": "What is the major benefit of using NAT with Port Address Translation?",
+    "image": "",
+    "options": [
+      "It allows external hosts access to internal servers.",
+      "It allows many internal hosts to share the same public IPv4 address.",
+      "It improves network performance for real-time protocols.",
+      "It provides a pool of public addresses that can be assigned to internal hosts."
+    ],
+    "answer": "It allows many internal hosts to share the same public IPv4 address."
+  },
+  {
+    "question": "What is the purpose of port forwarding?",
+    "image": "",
+    "options": [
+      "Port forwarding allows an internal user to reach a service on a public IPv4 address that is located outside a LAN.",
+      "Port forwarding allows users to reach servers on the Internet that are not using standard port numbers.",
+      "Port forwarding allows for translating inside local IP addresses to outside local addresses.",
+      "Port forwarding allows an external user to reach a service on a private IPv4 address that is located inside a LAN."
+    ],
+    "answer": "Port forwarding allows an external user to reach a service on a private IPv4 address that is located inside a LAN."
+  },
+  {
+    "question": "A network administrator is configuring a static NAT on the border router for a web server located in the DMZ network. The web server is configured to listen on TCP port 8080. The web server is paired with the internal IP address of 192.168.5.25 and the external IP address of 209.165.200.230. For easy access by hosts on the Internet, external users do not need to specify the port when visiting the web server. Which command will configure the static NAT?",
+    "image": "",
+    "options": [
+      "R1(config)# ip nat inside source static tcp 209.165.200.230 80 192.168.5.25 8080",
+      "R1(config)# ip nat inside source static tcp 192.168.5.25 8080 209.165.200.230 80",
+      "R1(config)# ip nat inside source static tcp 209.165.200.230 8080 192.168.5.25 80",
+      "R1(config)# ip nat inside source static tcp 192.168.5.25 80 209.165.200.230 8080"
+    ],
+    "answer": "R1(config)# ip nat inside source static tcp 192.168.5.25 8080 209.165.200.230 80"
+  },
+  {
+    "question": "What is a characteristic of unique local addresses?",
+    "image": "",
+    "options": [
+      "They are defined in RFC 3927.",
+      "Their implementation depends on ISPs providing the service.",
+      "They allow sites to be combined without creating any address conflicts.",
+      "They are designed to improve the security of IPv6 networks."
+    ],
+    "answer": "They allow sites to be combined without creating any address conflicts."
+  },
+  {
+    "question": "Which statement describes IPv6 ULAs?",
+    "image": "",
+    "options": [
+      "They begin with the fe80::/10 prefix.",
+      "They conserve IPv6 address space.",
+      "They are not routable across the Internet.",
+      "They are assigned by an ISP."
+    ],
+    "answer": "They are not routable across the Internet."
+  },
+  {
+    "question": "Refer to the exhibit. Based on the output that is shown, what type of NAT has been implemented?",
+    "image": "images/chapter9-q19.png",
+    "options": [
+      "PAT using an external interface",
+      "static NAT with one entry",
+      "dynamic NAT with a pool of two public IP addresses",
+      "static NAT with a NAT pool"
+    ],
+    "answer": "PAT using an external interface"
+  },
+  {
+    "question": "Fill in the blank. Do not use abbreviations.",
+    "image": "",
+    "options": [
+      "a many-to-one address mapping between local and global addresses",
+      "a many-to-many address mapping between local and global addresses",
+      "a one-to-many address mapping between local and global addresses",
+      "a one-to-one address mapping between local and global addresses"
+    ],
+    "answer": "a many-to-one address mapping between local and global addresses"
+  },
+  {
+    "question": "A technician is required to configure an edge router to use a different TCP port number for each session with a server on the Internet. What type of Network Address Translation (NAT) should be implemented?",
+    "image": "",
+    "options": [
+      "a many-to-one address mapping between local and global addresses",
+      "a many-to-many address mapping between local and global addresses",
+      "a one-to-many address mapping between local and global addresses",
+      "a one-to-one address mapping between local and global addresses"
+    ],
+    "answer": "a many-to-one address mapping between local and global addresses"
+  },
+  {
+    "question": "Which three statements describe ACL processing of packets? (Choose three.)",
+    "image": "",
+    "options": [
+      "An implicit deny any rejects any packet that does not match any ACE.",
+      "A packet can either be rejected or forwarded as directed by the ACE that is matched.",
+      "A packet that has been denied by one ACE can be permitted by a subsequent ACE.",
+      "A packet that does not match the conditions of any ACE will be forwarded by default.",
+      "Each statement is checked only until a match is detected or until the end of the ACE list.",
+      "Each packet is compared to the conditions of every ACE in the ACL before a forwarding decision is made."
+    ],
+    "answer": "An implicit deny any rejects any packet that does not match any ACE.",
+    "answers": [
+      "An implicit deny any rejects any packet that does not match any ACE.",
+      "A packet can either be rejected or forwarded as directed by the ACE that is matched.",
+      "Each statement is checked only until a match is detected or until the end of the ACE list."
+    ]
+  },
+  {
+    "question": "What two functions describe uses of an access control list? (Choose two.)",
+    "image": "",
+    "options": [
+      "ACLs assist the router in determining the best path to a destination.",
+      "Standard ACLs can restrict access to specific applications and ports.",
+      "ACLs provide a basic level of security for network access.",
+      "ACLs can permit or deny traffic based upon the MAC address originating on the router.",
+      "ACLs can control which areas a host can access on a network."
+    ],
+    "answer": "ACLs provide a basic level of security for network access.",
+    "answers": [
+      "ACLs provide a basic level of security for network access.",
+      "ACLs can control which areas a host can access on a network."
+    ]
+  },
+  {
+    "question": "In which configuration would an outbound ACL placement be preferred over an inbound ACL placement?",
+    "image": "",
+    "options": [
+      "when the ACL is applied to an outbound interface to filter packets coming from multiple inbound interfaces before the packets exit the interface",
+      "when a router has more than one ACL",
+      "when an outbound ACL is closer to the source of the traffic flow",
+      "when an interface is filtered by an outbound ACL and the network attached to the interface is the source network being filtered within the ACL"
+    ],
+    "answer": "when the ACL is applied to an outbound interface to filter packets coming from multiple inbound interfaces before the packets exit the interface"
+  },
+  {
+    "question": "Which two characteristics are shared by both standard and extended ACLs? (Choose two.)",
+    "image": "",
+    "options": [
+      "Both kinds of ACLs can filter based on protocol type.",
+      "Both can permit or deny specific services by port number.",
+      "Both include an implicit deny as a final entry.",
+      "Both filter packets for a specific destination host IP address.",
+      "Both can be created by using either a descriptive name or number."
+    ],
+    "answer": "Both include an implicit deny as a final entry.",
+    "answers": [
+      "Both include an implicit deny as a final entry.",
+      "Both can be created by using either a descriptive name or number."
+    ]
+  },
+  {
+    "question": "A network administrator needs to configure a standard ACL so that only the workstation of the administrator with the IP address 192.168.15.23 can access the virtual terminal of the main router. Which two configuration commands can achieve the task? (Choose two.)",
+    "image": "",
+    "options": [
+      "Router1(config)# access-list 10 permit host 192.168.15.23",
+      "Router1(config)# access-list 10 permit 192.168.15.23 0.0.0.0",
+      "Router1(config)# access-list 10 permit 192.168.15.23 0.0.0.255",
+      "Router1(config)# access-list 10 permit 192.168.15.23 255.255.255.0",
+      "Router1(config)# access-list 10 permit 192.168.15.23 255.255.255.255"
+    ],
+    "answer": "Router1(config)# access-list 10 permit host 192.168.15.23",
+    "answers": [
+      "Router1(config)# access-list 10 permit host 192.168.15.23",
+      "Router1(config)# access-list 10 permit 192.168.15.23 0.0.0.0"
+    ]
+  },
+  {
+    "question": "What single access list statement matches all of the following networks? 192.168.16.0 192.168.17.0 192.168.18.0 192.168.19.0",
+    "image": "",
+    "options": [
+      "access-list 10 permit 192.168.16.0 0.0.3.255",
+      "access-list 10 permit 192.168.16.0 0.0.0.255",
+      "access-list 10 permit 192.168.16.0 0.0.15.255",
+      "access-list 10 permit 192.168.0.0 0.0.15.255"
+    ],
+    "answer": "access-list 10 permit 192.168.16.0 0.0.3.255"
+  },
+  {
+    "question": "If a router has two interfaces and is routing both IPv4 and IPv6 traffic, how many ACLs could be created and applied to it?",
+    "image": "",
+    "options": [
+      "4",
+      "6",
+      "8",
+      "12",
+      "16"
+    ],
+    "answer": "8"
+  },
+  {
+    "question": "Which three statements are generally considered to be best practices in the placement of ACLs? (Choose three.)",
+    "image": "",
+    "options": [
+      "Place standard ACLs close to the source IP address of the traffic.",
+      "Place extended ACLs close to the destination IP address of the traffic.",
+      "Filter unwanted traffic before it travels onto a low-bandwidth link.",
+      "Place extended ACLs close to the source IP address of the traffic.",
+      "Place standard ACLs close to the destination IP address of the traffic.",
+      "For every inbound ACL placed on an interface, there should be a matching outbound ACL."
+    ],
+    "answer": "Filter unwanted traffic before it travels onto a low-bandwidth link.",
+    "answers": [
+      "Filter unwanted traffic before it travels onto a low-bandwidth link.",
+      "Place extended ACLs close to the source IP address of the traffic.",
+      "Place standard ACLs close to the destination IP address of the traffic."
+    ]
+  },
+  {
+    "question": "Refer to the exhibit. A router has an existing ACL that permits all traffic from the 172.16.0.0 network. The administrator attempts to add a new ACE to the ACL that denies packets from host 172.16.0.1 and receives the error message that is shown in the exhibit. What action can the administrator take to block packets from host 172.16.0.1 while still permitting all other traffic from the 172.16.0.0 network?",
+    "image": "images/chapter9-q30.png",
+    "options": [
+      "Manually add the new deny ACE with a sequence number of 5.",
+      "Manually add the new deny ACE with a sequence number of 15.",
+      "Create a second access list denying the host and apply it to the same interface.",
+      "Add a deny any any ACE to access-list 1."
+    ],
+    "answer": "Manually add the new deny ACE with a sequence number of 5."
+  },
+  {
+    "question": "Refer to the exhibit. What will happen to the access list 10 ACEs if the router is rebooted before any other commands are implemented?",
+    "image": "images/chapter9-q31.png",
+    "options": [
+      "The ACEs of access list 10 will be deleted.",
+      "The ACEs of access list 10 will not be affected.",
+      "The ACEs of access list 10 will be renumbered.",
+      "The ACEs of access list 10 wildcard masks will be converted to subnet masks."
+    ],
+    "answer": "The ACEs of access list 10 will be renumbered."
+  },
+  {
+    "question": "An administrator has configured an access list on R1 to allow SSH administrative access from host 172.16.1.100. Which command correctly applies the ACL?",
+    "image": "",
+    "options": [
+      "R1(config-if)# ip access-group 1 in",
+      "R1(config-if)# ip access-group 1 out",
+      "R1(config-line)# access-class 1 in",
+      "R1(config-line)# access-class 1 out"
+    ],
+    "answer": "R1(config-line)# access-class 1 in"
+  },
+  {
+    "question": "Consider the following access list that allows IP phone configuration file transfers from a particular host to a TFTP server:",
+    "image": "",
+    "options": [
+      "R1(config)# access-list 105 permit tcp any host 10.0.54.5 eq 20 R1(config)# access-list 105 permit tcp any host 10.0.54.5 eq 21",
+      "R1(config)# interface gi0/0 R1(config-if)# no ip access-group 105 out R1(config)# access-list 105 permit tcp any host 10.0.54.5 eq 20 R1(config)# access-list 105 permit tcp any host 10.0.54.5 eq 21 R1(config)# interface gi0/0 R1(config-if)# ip access-group 105 out",
+      "R1(config)# interface gi0/0 R1(config-if)# no ip access-group 105 out R1(config)# no access-list 105 R1(config)# access-list 105 permit udp host 10.0.70.23 host 10.0.54.5 range 1024 5000 R1(config)# access-list 105 permit tcp any host 10.0.54.5 eq 20 R1(config)# access-list 105 permit tcp any host 10.0.54.5 eq 21 R1(config)# access-list 105 deny ip any any R1(config)# interface gi0/0 R1(config-if)# ip access-group 105 out",
+      "R1(config)# access-list 105 permit udp host 10.0.70.23 host 10.0.54.5 range 1024 5000 R1(config)# access-list 105 permit tcp any host 10.0.54.5 eq 20 R1(config)# access-list 105 permit tcp any host 10.0.54.5 eq 21 R1(config)# access-list 105 deny ip any any"
+    ],
+    "answer": "R1(config)# interface gi0/0 R1(config-if)# no ip access-group 105 out R1(config)# no access-list 105 R1(config)# access-list 105 permit udp host 10.0.70.23 host 10.0.54.5 range 1024 5000 R1(config)# access-list 105 permit tcp any host 10.0.54.5 eq 20 R1(config)# access-list 105 permit tcp any host 10.0.54.5 eq 21 R1(config)# access-list 105 deny ip any any R1(config)# interface gi0/0 R1(config-if)# ip access-group 105 out"
+  },
+  {
+    "question": "Refer to the exhibit. What is the result of adding the established argument to the end of the ACE?",
+    "image": "images/chapter9-q34.png",
+    "options": [
+      "Any traffic is allowed to reach the 192.168.254.0 255.255.254.0 network.",
+      "Any IP traffic is allowed to reach the 192.168.254.0 255.255.254.0 network as long as it is in response to an originated request.",
+      "192.168.254.0 /23 traffic is allowed to reach any network.",
+      "Any TCP traffic is allowed to reach the 192.168.254.0 255.255.254.0 network if it is in response to an originated request."
+    ],
+    "answer": "Any TCP traffic is allowed to reach the 192.168.254.0 255.255.254.0 network if it is in response to an originated request."
+  },
+  {
+    "question": "What packets would match the access control list statement that is shown below? access-list 110 permit tcp 172.16.0.0 0.0.0.255 any eq 22",
+    "image": "",
+    "options": [
+      "SSH traffic from the 172.16.0.0 network to any destination network",
+      "SSH traffic from any source network to the 172.16.0.0 network",
+      "any TCP traffic from any host to the 172.16.0.0 network",
+      "any TCP traffic from the 172.16.0.0 network to any destination network"
+    ],
+    "answer": "SSH traffic from the 172.16.0.0 network to any destination network"
+  },
+  {
+    "question": "Which statement describes a difference between the operation of inbound and outbound ACLs?",
+    "image": "",
+    "options": [
+      "In contrast to outbound ALCs, inbound ACLs can be used to filter packets with multiple criteria.",
+      "Inbound ACLs can be used in both routers and switches but outbound ACLs can be used only on routers.",
+      "Inbound ACLs are processed before the packets are routed while outbound ACLs are processed after the routing is completed.",
+      "On a network interface, more than one inbound ACL can be configured but only one outbound ACL can be configured."
+    ],
+    "answer": "Inbound ACLs are processed before the packets are routed while outbound ACLs are processed after the routing is completed."
+  },
+  {
+    "question": "What is a limitation when utilizing both IPv4 and IPv6 ACLs on a router?",
+    "image": "",
+    "options": [
+      "A device can run only IPv4 ACLs or IPv6 ACLs.",
+      "Both IPv4 and IPv6 ACLs can be configured on a single device, but cannot share the same name.",
+      "IPv4 ACLs can be numbered or named whereas IPv6 ACLs must be numbered.",
+      "IPv6 ACLs perform the same functions as standard IPv4 ACLs."
+    ],
+    "answer": "Both IPv4 and IPv6 ACLs can be configured on a single device, but cannot share the same name."
+  },
+  {
+    "question": "What method is used to apply an IPv6 ACL to a router interface?",
+    "image": "",
+    "options": [
+      "the use of the access-class command",
+      "the use of the ip access-group command",
+      "the use of the ipv6 traffic-filter command",
+      "the use of the ipv6 access-list command"
+    ],
+    "answer": "the use of the ipv6 traffic-filter command"
+  },
+  {
+    "question": "Which IPv6 ACL command entry will permit traffic from any host to an SMTP server on network 2001:DB8:10:10::/64?",
+    "image": "",
+    "options": [
+      "permit tcp any host 2001:DB8:10:10::100 eq 25",
+      "permit tcp host 2001:DB8:10:10::100 any eq 25",
+      "permit tcp any host 2001:DB8:10:10::100 eq 23",
+      "permit tcp host 2001:DB8:10:10::100 any eq 23"
+    ],
+    "answer": "permit tcp any host 2001:DB8:10:10::100 eq 25"
+  },
+  {
+    "question": "Refer to the exhibit. The IPv6 access list LIMITED_ACCESS is applied on the S0/0/0 interface of R1 in the inbound direction. Which IPv6 packets from the ISP will be dropped by the ACL on R1?",
+    "image": "images/chapter9-q40.png",
+    "options": [
+      "HTTPS packets to PC1",
+      "ICMPv6 packets that are destined to PC1",
+      "packets that are destined to PC1 on port 80",
+      "neighbor advertisements that are received from the ISP router"
+    ],
+    "answer": "ICMPv6 packets that are destined to PC1"
+  },
+  {
+    "question": "Which feature is unique to IPv6 ACLs when compared to those of IPv4 ACLs?",
+    "image": "",
+    "options": [
+      "the use of wildcard masks",
+      "an implicit deny any any ACE",
+      "the use of named ACL entries",
+      "an implicit permit of neighbor discovery packets"
+    ],
+    "answer": "an implicit permit of neighbor discovery packets"
+  },
+  {
+    "question": "Which three implicit access control entries are automatically added to the end of an IPv6 ACL? (Choose three.)",
+    "image": "",
+    "options": [
+      "deny ip any any",
+      "deny ipv6 any any",
+      "permit ipv6 any any",
+      "deny icmp any any",
+      "permit icmp any any nd-ns",
+      "permit icmp any any nd-na"
+    ],
+    "answer": "deny ipv6 any any",
+    "answers": [
+      "deny ipv6 any any",
+      "permit icmp any any nd-ns",
+      "permit icmp any any nd-na"
+    ]
+  },
+  {
+    "question": "What is the only type of ACL available for IPv6?",
+    "image": "",
+    "options": [
+      "named standard",
+      "named extended",
+      "numbered standard",
+      "numbered extended"
+    ],
+    "answer": "named extended"
+  },
+  {
+    "question": "Match each statement with the example subnet and wildcard that it describes. (Not all options are used.)",
+    "image": "images/chapter9-q44.png",
+    "options": [
+      "They are configured in the interface configuration mode.",
+      "They filter traffic based on source IP addresses only.",
+      "They can be created with a number but not with a name.",
+      "They can be configured to filter traffic based on both source IP addresses and source ports."
+    ],
+    "answer": "They filter traffic based on source IP addresses only."
+  },
+  {
+    "question": "Which statement describes a characteristic of standard IPv4 ACLs?",
+    "image": "",
+    "options": [
+      "They are configured in the interface configuration mode.",
+      "They filter traffic based on source IP addresses only.",
+      "They can be created with a number but not with a name.",
+      "They can be configured to filter traffic based on both source IP addresses and source ports."
+    ],
+    "answer": "They filter traffic based on source IP addresses only."
+  },
+  {
+    "question": "Which IPv4 address range covers all IP addresses that match the ACL filter specified by 172.16.2.0 with wildcard mask 0.0.1.255?",
+    "image": "",
+    "options": [
+      "172.16.2.0 to 172.16.2.255",
+      "172.16.2.1 to 172.16.3.254",
+      "172.16.2.0 to 172.16.3.255",
+      "172.16.2.1 to 172.16.255.255"
+    ],
+    "answer": "172.16.2.0 to 172.16.3.255"
+  },
+  {
+    "question": "Refer to the exhibit. The network administrator that has the IP address of 10.0.70.23/25 needs to have access to the corporate FTP server (10.0.54.5/28). The FTP server is also a web server that is accessible to all internal employees on networks within the 10.x.x.x address. No other traffic should be allowed to this server. Which extended ACL would be used to filter this traffic, and how would this ACL be applied? (Choose two.)",
+    "image": "images/chapter9-q47.png",
+    "options": [
+      "access-list 105 permit ip host 10.0.70.23 host 10.0.54.5 access-list 105 permit tcp any host 10.0.54.5 eq www access-list 105 permit ip any any",
+      "access-list 105 permit tcp host 10.0.54.5 any eq www access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 20 access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 21",
+      "access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 20 access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 21 access-list 105 permit tcp 10.0.0.0 0.255.255.255 host 10.0.54.5 eq www access-list 105 deny ip any host 10.0.54.5 access-list 105 permit ip any any",
+      "R2(config)# interface gi0/0 R2(config-if)# ip access-group 105 in",
+      "R1(config)# interface gi0/0 R1(config-if)# ip access-group 105 out",
+      "R1(config)# interface s0/0/0 R1(config-if)# ip access-group 105 out"
+    ],
+    "answer": "access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 20 access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 21 access-list 105 permit tcp 10.0.0.0 0.255.255.255 host 10.0.54.5 eq www access-list 105 deny ip any host 10.0.54.5 access-list 105 permit ip any any",
+    "answers": [
+      "access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 20 access-list 105 permit tcp host 10.0.70.23 host 10.0.54.5 eq 21 access-list 105 permit tcp 10.0.0.0 0.255.255.255 host 10.0.54.5 eq www access-list 105 deny ip any host 10.0.54.5 access-list 105 permit ip any any",
+      "R1(config)# interface gi0/0 R1(config-if)# ip access-group 105 out"
+    ]
+  },
+  {
+    "question": "Launch PT – Hide and Save PT",
+    "image": "images/chapter9-q48.png",
+    "options": [
+      "The ACL is missing a deny ip any any ACE.",
+      "The ACL is applied in the wrong direction.",
+      "The access-list 105 command or commands are incorrect.",
+      "The ACL is applied to the wrong interface.*",
+      "No ACL is needed for this scenario."
+    ],
+    "answer": "The ACL is applied to the wrong interface.*"
+  },
+  {
+    "question": "What are two possible uses of access control lists in an enterprise network? (Choose two.)",
+    "image": "",
+    "options": [
+      "limiting debug outputs",
+      "reducing the processing load on routers",
+      "controlling the physical status of router interfaces",
+      "controlling virtual terminal access to routers",
+      "allowing Layer 2 traffic to be filtered by a router"
+    ],
+    "answer": "limiting debug outputs",
+    "answers": [
+      "limiting debug outputs",
+      "controlling virtual terminal access to routers"
+    ]
+  }
+]

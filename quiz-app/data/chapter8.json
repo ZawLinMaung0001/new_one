@@ -1,0 +1,711 @@
+[
+  {
+    "question": "Which DHCPv4 message will a client send to accept an IPv4 address that is offered by a DHCP server?",
+    "image": "",
+    "options": [
+      "unicast DHCPACK",
+      "broadcast DHCPACK",
+      "unicast DHCPREQUEST",
+      "broadcast DHCPREQUEST"
+    ],
+    "answer": "broadcast DHCPREQUEST"
+  },
+  {
+    "question": "A company uses DHCP servers to dynamically assign IPv4 addresses to employee workstations. The address lease duration is set as 5 days. An employee returns to the office after an absence of one week. When the employee boots the workstation, it sends a message to obtain an IP address. Which Layer 2 and Layer 3 destination addresses will the message contain?",
+    "image": "",
+    "options": [
+      "FF-FF-FF-FF-FF-FF and 255.255.255.255",
+      "both MAC and IPv4 addresses of the DHCP server",
+      "MAC address of the DHCP server and 255.255.255.255",
+      "FF-FF-FF-FF-FF-FF and IPv4 address of the DHCP server"
+    ],
+    "answer": "FF-FF-FF-FF-FF-FF and 255.255.255.255"
+  },
+  {
+    "question": "Which is a DHCPv4 address allocation method that assigns IPv4 addresses for a limited lease period?",
+    "image": "",
+    "options": [
+      "manual allocation",
+      "pre-allocation",
+      "automatic allocation",
+      "dynamic allocation"
+    ],
+    "answer": "dynamic allocation"
+  },
+  {
+    "question": "Which address does a DHCPv4 server target when sending a DHCPOFFER message to a client that makes an address request?",
+    "image": "",
+    "options": [
+      "client IP address",
+      "client hardware address",
+      "gateway IP address",
+      "broadcast MAC address"
+    ],
+    "answer": "client hardware address"
+  },
+  {
+    "question": "As a DHCPv4 client lease is about to expire, what is the message that the client sends the DHCP server?",
+    "image": "",
+    "options": [
+      "DHCPDISCOVER",
+      "DHCPOFFER",
+      "DHCPREQUEST",
+      "DHCPACK"
+    ],
+    "answer": "DHCPREQUEST"
+  },
+  {
+    "question": "What is an advantage of configuring a Cisco router as a relay agent?",
+    "image": "",
+    "options": [
+      "It will allow DHCPDISCOVER messages to pass without alteration.",
+      "It can forward both broadcast and multicast messages on behalf of clients.",
+      "It can provide relay services for multiple UDP services.",
+      "It reduces the response time from a DHCP server."
+    ],
+    "answer": "It can provide relay services for multiple UDP services."
+  },
+  {
+    "question": "An administrator issues the commands: Router(config)# interface g0/1 Router(config-if)# ip address dhcp What is the administrator trying to achieve?",
+    "image": "",
+    "options": [
+      "configuring the router to act as a DHCPv4 server",
+      "configuring the router to obtain IP parameters from a DHCPv4 server",
+      "configuring the router to act as a relay agent",
+      "configuring the router to resolve IP address conflicts"
+    ],
+    "answer": "configuring the router to obtain IP parameters from a DHCPv4 server"
+  },
+  {
+    "question": "Under which two circumstances would a router usually be configured as a DHCPv4 client? (Choose two.)",
+    "image": "",
+    "options": [
+      "The router is intended to be used as a SOHO gateway.",
+      "The administrator needs the router to act as a relay agent.",
+      "The router is meant to provide IP addresses to the hosts.",
+      "This is an ISP requirement.",
+      "The router has a fixed IP address."
+    ],
+    "answer": "The router is intended to be used as a SOHO gateway.",
+    "answers": [
+      "The router is intended to be used as a SOHO gateway.",
+      "This is an ISP requirement."
+    ]
+  },
+  {
+    "question": "A company uses the SLAAC method to configure IPv6 addresses for the employee workstations. Which address will a client use as its default gateway?​",
+    "image": "",
+    "options": [
+      "the all-routers multicast address",
+      "the link-local address of the router interface that is attached to the network",
+      "the unique local address of the router interface that is attached to the network",
+      "the global unicast address of the router interface that is attached to the network"
+    ],
+    "answer": "the link-local address of the router interface that is attached to the network"
+  },
+  {
+    "question": "A network administrator configures a router to send RA messages with M flag as 0 and O flag as 1. Which statement describes the effect of this configuration when a PC tries to configure its IPv6 address?",
+    "image": "",
+    "options": [
+      "It should contact a DHCPv6 server for all the information that it needs.",
+      "It should use the information that is contained in the RA message exclusively.",
+      "It should use the information that is contained in the RA message and contact a DHCPv6 server for additional information",
+      "It should contact a DHCPv6 server for the prefix, the prefix-length information, and an interface ID that is both random and unique."
+    ],
+    "answer": "It should use the information that is contained in the RA message and contact a DHCPv6 server for additional information"
+  },
+  {
+    "question": "A company implements the stateless DHCPv6 method for configuring IPv6 addresses on employee workstations. After a workstation receives messages from multiple DHCPv6 servers to indicate their availability for DHCPv6 service, which message does it send to a server for configuration information?",
+    "image": "",
+    "options": [
+      "DHCPv6 SOLICIT",
+      "DHCPv6 REQUEST",
+      "DHCPv6 ADVERTISE",
+      "DHCPv6 INFORMATION-REQUEST"
+    ],
+    "answer": "DHCPv6 INFORMATION-REQUEST"
+  },
+  {
+    "question": "An administrator wants to configure hosts to automatically assign IPv6 addresses to themselves by the use of Router Advertisement messages, but also to obtain the DNS server address from a DHCPv6 server. Which address assignment method should be configured?",
+    "image": "",
+    "options": [
+      "SLAAC",
+      "stateless DHCPv6",
+      "stateful DHCPv6",
+      "RA and EUI-64"
+    ],
+    "answer": "stateless DHCPv6"
+  },
+  {
+    "question": "How does an IPv6 client ensure that it has a unique address after it configures its IPv6 address using the SLAAC allocation method?",
+    "image": "",
+    "options": [
+      "It sends an ARP message with the IPv6 address as the destination IPv6 address.",
+      "It checks with the IPv6 address database that is hosted by the SLAAC server.",
+      "It contacts the DHCPv6 server via a special formed ICMPv6 message.",
+      "It sends an ICMPv6 Neighbor Solicitation message with the IPv6 address as the target IPv6 address."
+    ],
+    "answer": "It sends an ICMPv6 Neighbor Solicitation message with the IPv6 address as the target IPv6 address."
+  },
+  {
+    "question": "What is used in the EUI-64 process to create an IPv6 interface ID on an IPv6 enabled interface?",
+    "image": "",
+    "options": [
+      "the MAC address of the IPv6 enabled interface",
+      "a randomly generated 64-bit hexadecimal address",
+      "an IPv6 address that is provided by a DHCPv6 server",
+      "an IPv4 address that is configured on the interface"
+    ],
+    "answer": "the MAC address of the IPv6 enabled interface"
+  },
+  {
+    "question": "What two methods can be used to generate an interface ID by an IPv6 host that is using SLAAC? (Choose two.)",
+    "image": "",
+    "options": [
+      "EUI-64",
+      "random generation",
+      "stateful DHCPv6",
+      "DAD",
+      "ARP"
+    ],
+    "answer": "EUI-64",
+    "answers": [
+      "EUI-64",
+      "random generation"
+    ]
+  },
+  {
+    "question": "Refer to the exhibit. Based on the output that is shown, what kind of IPv6 addressing is being configured?",
+    "image": "images/chapter8-q16.png",
+    "options": [
+      "SLAAC",
+      "stateful DHCPv6",
+      "stateless DHCPv6",
+      "static link-local"
+    ],
+    "answer": "stateless DHCPv6"
+  },
+  {
+    "question": "What is the result of a network technician issuing the command ip dhcp excluded-address 10.0.15.1 10.0.15.15 on a Cisco router?",
+    "image": "",
+    "options": [
+      "The Cisco router will exclude only the 10.0.15.1 and 10.0.15.15 IP addresses from being leased to DHCP clients.",
+      "The Cisco router will automatically create a DHCP pool using a /28 mask.",
+      "The Cisco router will allow only the specified IP addresses to be leased to clients.",
+      "The Cisco router will exclude 15 IP addresses from being leased to DHCP clients.",
+      "The ip dhcp excluded-address command is followed by the first and the last addresses to be excluded from being leased to DHCP clients."
+    ],
+    "answer": "The Cisco router will exclude 15 IP addresses from being leased to DHCP clients."
+  },
+  {
+    "question": "Refer to the exhibit. What should be done to allow PC-A to receive an IPv6 address from the DHCPv6 server?",
+    "image": "images/chapter8-q18.png",
+    "options": [
+      "Add the ipv6 dhcp relay command to interface Fa0/0.",
+      "Configure the ipv6 nd managed-config-flag command on interface Fa0/1.",
+      "Change the ipv6 nd managed-config-flag command to ipv6 nd other-config-flag.",
+      "Add the IPv6 address 2001:DB8:1234:5678::10/64 to the interface configuration of the DHCPv6 server."
+    ],
+    "answer": "Add the ipv6 dhcp relay command to interface Fa0/0."
+  },
+  {
+    "question": "Refer to the exhibit. A network administrator is implementing stateful DHCPv6 operation for the company. However, the clients are not using the prefix and prefix-length information that is configured in the DHCP pool. The administrator issues a show ipv6 interface command. What could be the cause of the problem?",
+    "image": "images/chapter8-q19.png",
+    "options": [
+      "No virtual link-local address is configured",
+      "The Duplicate Address Detection feature is disabled",
+      "The router is configured for SLAAC DHCPv6 operation",
+      "The router is configured for stateless DHCPv6 operation"
+    ],
+    "answer": "The router is configured for stateless DHCPv6 operation"
+  },
+  {
+    "question": "Refer to the exhibit. A network administrator is implementing the stateless DHCPv6 operation for the company. Clients are configuring IPv6 addresses as expected. However, the clients are not getting the DNS server address and the domain name information configured in the DHCP pool. What could be the cause of the problem?",
+    "image": "images/chapter8-q20.png",
+    "options": [
+      "The GigabitEthernet interface is not activated",
+      "The router is configured for SLAAC operation",
+      "The DNS server address is not on the same network as the clients are on",
+      "The clients cannot communicate with the DHCPv6 server, evidenced by the number of active clients being 0"
+    ],
+    "answer": "The router is configured for SLAAC operation"
+  },
+  {
+    "question": "Fill in the blank. Do not abbreviate Type a command to exclude the first fifteen useable IP addresses from a DHCPv4 address pool of the network 10.0.15.0/24. Router(config)# ip dhcp",
+    "image": "images/chapter8-q21.jpg",
+    "options": [
+      "OSPF will run a new DR/BDR election.",
+      "SPF will run and determine which neighbor router is “down”.",
+      "A new dead interval timer of 4 times the hello interval will start.",
+      "OSPF will remove that neighbor from the router link-state database."
+    ],
+    "answer": "OSPF will remove that neighbor from the router link-state database."
+  },
+  {
+    "question": "Order the steps of configuring a router as a DHCPv4 Server. (Not all options are used.)",
+    "image": "images/chapter8-q22.jpg",
+    "options": [
+      "OSPF will run a new DR/BDR election.",
+      "SPF will run and determine which neighbor router is “down”.",
+      "A new dead interval timer of 4 times the hello interval will start.",
+      "OSPF will remove that neighbor from the router link-state database."
+    ],
+    "answer": "OSPF will remove that neighbor from the router link-state database."
+  },
+  {
+    "question": "Match the descriptions to the corresponding DHCPv6 server type. (Not all options are used.)",
+    "image": "images/chapter8-q23.jpg",
+    "options": [
+      "OSPF will run a new DR/BDR election.",
+      "SPF will run and determine which neighbor router is “down”.",
+      "A new dead interval timer of 4 times the hello interval will start.",
+      "OSPF will remove that neighbor from the router link-state database."
+    ],
+    "answer": "OSPF will remove that neighbor from the router link-state database."
+  },
+  {
+    "question": "A router is participating in an OSPFv2 domain. What will always happen if the dead interval expires before the router receives a hello packet from an adjacent DROTHER OSPF router?",
+    "image": "",
+    "options": [
+      "OSPF will run a new DR/BDR election.",
+      "SPF will run and determine which neighbor router is “down”.",
+      "A new dead interval timer of 4 times the hello interval will start.",
+      "OSPF will remove that neighbor from the router link-state database."
+    ],
+    "answer": "OSPF will remove that neighbor from the router link-state database."
+  },
+  {
+    "question": "Which three statements describe the similarities between OSPFv2 and OSPFv3? (Choose three.)",
+    "image": "",
+    "options": [
+      "They both are link-state protocols.",
+      "They both use the global address as the source address when sending OSPF messages.",
+      "They both share the concept of multiple areas.",
+      "They both support IPsec for authentication.",
+      "They both use the same DR/BDR election process.",
+      "They both have unicast routing enabled by default."
+    ],
+    "answer": "They both are link-state protocols.",
+    "answers": [
+      "They both are link-state protocols.",
+      "They both share the concept of multiple areas.",
+      "They both use the same DR/BDR election process."
+    ]
+  },
+  {
+    "question": "Which OSPF component is identical in all routers in an OSPF area after convergence?",
+    "image": "",
+    "options": [
+      "adjacency database",
+      "link-state database",
+      "routing table",
+      "SPF tree"
+    ],
+    "answer": "link-state database"
+  },
+  {
+    "question": "Which three statements describe features of the OSPF topology table? (Choose three.)",
+    "image": "",
+    "options": [
+      "It is a link-state database that represents the network topology.",
+      "Its contents are the result of running the SPF algorithm.",
+      "When converged, all routers in an area have identical topology tables.",
+      "The topology table contains feasible successor routes.",
+      "The table can be viewed via the show ip ospf database command.",
+      "After convergence, the table only contains the lowest cost route entries for all known networks."
+    ],
+    "answer": "It is a link-state database that represents the network topology.",
+    "answers": [
+      "It is a link-state database that represents the network topology.",
+      "When converged, all routers in an area have identical topology tables.",
+      "The table can be viewed via the show ip ospf database command."
+    ]
+  },
+  {
+    "question": "What is used to create the OSPF neighbor table?",
+    "image": "",
+    "options": [
+      "adjacency database",
+      "link-state database",
+      "forwarding database",
+      "routing table"
+    ],
+    "answer": "adjacency database"
+  },
+  {
+    "question": "What is a function of OSPF hello packets?",
+    "image": "",
+    "options": [
+      "to send specifically requested link-state records",
+      "to discover neighbors and build adjacencies between them",
+      "to ensure database synchronization between routers",
+      "to request specific link-state records from neighbor routers"
+    ],
+    "answer": "to discover neighbors and build adjacencies between them"
+  },
+  {
+    "question": "Which OSPF packet contains the different types of link-state advertisements?",
+    "image": "",
+    "options": [
+      "hello",
+      "DBD",
+      "LSR",
+      "LSU",
+      "LSAck"
+    ],
+    "answer": "LSU"
+  },
+  {
+    "question": "What are the two purposes of an OSPF router ID? (Choose two.)",
+    "image": "",
+    "options": [
+      "to facilitate the establishment of network convergence",
+      "to uniquely identify the router within the OSPF domain",
+      "to facilitate the transition of the OSPF neighbor state to Full",
+      "to facilitate router participation in the election of the designated router",
+      "to enable the SPF algorithm to determine the lowest cost path to remote networks"
+    ],
+    "answer": "to uniquely identify the router within the OSPF domain",
+    "answers": [
+      "to uniquely identify the router within the OSPF domain",
+      "to facilitate router participation in the election of the designated router"
+    ]
+  },
+  {
+    "question": "What is the first criterion used by OPSF routers to elect a DR?",
+    "image": "",
+    "options": [
+      "highest priority",
+      "highest IP address",
+      "highest router ID",
+      "highest MAC address"
+    ],
+    "answer": "highest priority"
+  },
+  {
+    "question": "Which wildcard mask would be used to advertise the 192.168.5.96/27 network as part of an OSPF configuration?",
+    "image": "",
+    "options": [
+      "0.0.0.32",
+      "0.0.0.31",
+      "255.255.255.224",
+      "255.255.255.223"
+    ],
+    "answer": "0.0.0.31"
+  },
+  {
+    "question": "What are two reasons that will prevent two routers from forming an OSPFv2 adjacency? (Choose two.)",
+    "image": "",
+    "options": [
+      "a mismatched Cisco IOS version that is used",
+      "mismatched OSPF Hello or Dead timers",
+      "mismatched subnet masks on the link interfaces",
+      "use of private IP addresses on the link interfaces",
+      "one router connecting to a FastEthernet port on the switch and the other connecting to a GigabitEthernet port"
+    ],
+    "answer": "mismatched OSPF Hello or Dead timers",
+    "answers": [
+      "mismatched OSPF Hello or Dead timers",
+      "mismatched subnet masks on the link interfaces"
+    ]
+  },
+  {
+    "question": "Refer to the exhibit. A network administrator issued the command show ip ospf interface on the router R2. What conclusion can be drawn?",
+    "image": "images/chapter8-q35.png",
+    "options": [
+      "R2 is connecting to a point-to-point network.",
+      "R2 has not formed an adjacency with any other router.",
+      "R2 is configured with the OSPF router-id command.",
+      "R2 is not configured with default Hello and Dead timer values."
+    ],
+    "answer": "R2 has not formed an adjacency with any other router."
+  },
+  {
+    "question": "What command would be used to determine if a routing protocol-initiated relationship had been made with an adjacent router?",
+    "image": "",
+    "options": [
+      "ping",
+      "show ip protocols",
+      "show ip ospf neighbor",
+      "show ip interface brief"
+    ],
+    "answer": "show ip ospf neighbor"
+  },
+  {
+    "question": "Which OSPFv3 function works differently from OSPFv2?",
+    "image": "",
+    "options": [
+      "metric calculation",
+      "hello mechanism",
+      "OSPF packet types",
+      "authentication",
+      "election process"
+    ],
+    "answer": "authentication"
+  },
+  {
+    "question": "Which three addresses could be used as the destination address for OSPFv3 messages? (Choose three.)",
+    "image": "",
+    "options": [
+      "FE80::1",
+      "FF02::5",
+      "FF02::6",
+      "FF02::A",
+      "FF02::1:2",
+      "2001:db8:cafe::1"
+    ],
+    "answer": "FE80::1",
+    "answers": [
+      "FE80::1",
+      "FF02::5",
+      "FF02::6"
+    ]
+  },
+  {
+    "question": "What does a Cisco router use automatically to create link-local addresses on serial interfaces when OSPFv3 is implemented?",
+    "image": "",
+    "options": [
+      "the highest MAC address available on the router, the FE80::/10 prefix, and the EUI-48 process",
+      "the FE80::/10 prefix and the EUI-48 process",
+      "the MAC address of the serial interface, the FE80::/10 prefix, and the EUI-64 process",
+      "an Ethernet interface MAC address available on the router, the FE80::/10 prefix, and the EUI-64 process"
+    ],
+    "answer": "an Ethernet interface MAC address available on the router, the FE80::/10 prefix, and the EUI-64 process"
+  },
+  {
+    "question": "A network administrator enters the command ipv6 router ospf 64in global configuration mode. What is the result of this command?",
+    "image": "",
+    "options": [
+      "The router will be assigned an autonomous system number of 64.",
+      "The router will be assigned a router ID of 64.",
+      "The reference bandwidth will be set to 64 Mb/s.",
+      "The OSPFv3 process will be assigned an ID of 64."
+    ],
+    "answer": "The OSPFv3 process will be assigned an ID of 64."
+  },
+  {
+    "question": "Single area OSPFv3 has been enabled on a router via the ipv6 router ospf 20 command. Which command will enable this OSPFv3 process on an interface of that router?",
+    "image": "",
+    "options": [
+      "ipv6 ospf 0 area 0",
+      "ipv6 ospf 20 area 20",
+      "ipv6 ospf 0 area 20",
+      "ipv6 ospf 20 area 0"
+    ],
+    "answer": "ipv6 ospf 20 area 0"
+  },
+  {
+    "question": "Which command will verify that a router that is running OSPFv3 has formed an adjacency with other routers in its OSPF area?",
+    "image": "",
+    "options": [
+      "show running-configuration",
+      "show ipv6 ospf neighbor",
+      "show ipv6 route ospf",
+      "show ipv6 interface brief"
+    ],
+    "answer": "show ipv6 ospf neighbor"
+  },
+  {
+    "question": "Fill in the blank. Do not use abbreviations.",
+    "image": "images/chapter8-q43.png",
+    "options": [
+      "Finished!",
+      "Completion!",
+      "Success!",
+      "Converged!"
+    ],
+    "answer": "Completion!"
+  },
+  {
+    "question": "Fill in the blank.",
+    "image": "images/chapter8-q44.png",
+    "options": [
+      "Finished!",
+      "Completion!",
+      "Success!",
+      "Converged!"
+    ],
+    "answer": "Completion!"
+  },
+  {
+    "question": "Fill in the blank.",
+    "image": "images/chapter8-q45.png",
+    "options": [
+      "Finished!",
+      "Completion!",
+      "Success!",
+      "Converged!"
+    ],
+    "answer": "Completion!"
+  },
+  {
+    "question": "Match the information to the command that is used to obtain the information. (Not all options are used.)",
+    "image": "images/chapter8-q46.png",
+    "options": [
+      "Finished!",
+      "Completion!",
+      "Success!",
+      "Converged!"
+    ],
+    "answer": "Completion!"
+  },
+  {
+    "question": "Open the PT Activity. Perform the tasks in the activity instructions and then complete the task. What message is displayed on www.ciscoville.com?",
+    "image": "",
+    "options": [
+      "Finished!",
+      "Completion!",
+      "Success!",
+      "Converged!"
+    ],
+    "answer": "Completion!"
+  },
+  {
+    "question": "Which criterion is preferred by the router to choose a router ID?",
+    "image": "",
+    "options": [
+      "the IP address of the highest configured loopback interface on the router",
+      "the IP address of the highest active interface on the router",
+      "the router-id rid command",
+      "the IP address of the highest active OSPF-enabled interface"
+    ],
+    "answer": "the router-id rid command"
+  },
+  {
+    "question": "Which command should be used to check the OSPF process ID, the router ID, networks the router is advertising, the neighbors the router is receiving updates from, and the default administrative distance?",
+    "image": "",
+    "options": [
+      "show ip protocols",
+      "show ip ospf neighbor",
+      "show ip ospf",
+      "show ip ospf interface"
+    ],
+    "answer": "show ip protocols"
+  },
+  {
+    "question": "A network administrator enters the command ipv6 router ospf 64 in global configuration mode. What is the result of this command?",
+    "image": "",
+    "options": [
+      "The router will be assigned an autonomous system number of 64.",
+      "The router will be assigned a router ID of 64.",
+      "The reference bandwidth will be set to 64 Mb/s.",
+      "The OSPFv3 process will be assigned an ID of 64."
+    ],
+    "answer": "The OSPFv3 process will be assigned an ID of 64."
+  },
+  {
+    "question": "When a network engineer is configuring OSPFv3 on a router, which command would the engineer issue immediately before configuring the router ID?",
+    "image": "",
+    "options": [
+      "ipv6 ospf 10 area 0",
+      "ipv6 router ospf 10",
+      "interface serial 0/0/1",
+      "clear ipv6 ospf process"
+    ],
+    "answer": "ipv6 router ospf 10"
+  },
+  {
+    "question": "Which command will provide information specific to OSPFv3 routes in the routing table?",
+    "image": "",
+    "options": [
+      "show ip route ospf",
+      "show ip route",
+      "show ipv6 route",
+      "show ipv6 route ospf"
+    ],
+    "answer": "show ipv6 route ospf"
+  },
+  {
+    "question": "Fill in the blank.",
+    "image": "images/chapter8-q53.png",
+    "options": [
+      "Completion!",
+      "Converged!",
+      "Success!",
+      "Finished"
+    ],
+    "answer": "Completion!"
+  },
+  {
+    "question": "Launch PT – Hide and Save PT. Open the PT Activity. Perform the tasks in the activity instructions and then complete the task. What message is displayed on www.ciscoville.com?",
+    "image": "images/chapter8-q54.png",
+    "options": [
+      "Completion!",
+      "Converged!",
+      "Success!",
+      "Finished"
+    ],
+    "answer": "Completion!"
+  },
+  {
+    "question": "By order of precedence, match the selection of router ID for an OSFP-enabled router to the possible router ID options. (Not all options are used.)",
+    "image": "images/chapter8-q55.jpg",
+    "options": [
+      "Highest priority",
+      "Highest IP address",
+      "Highest MAC address",
+      "Highest router ID"
+    ],
+    "answer": "Highest priority"
+  },
+  {
+    "question": "Match the description to the term. (Not all options are used.)",
+    "image": "images/chapter8-q56.jpg",
+    "options": [
+      "Highest priority",
+      "Highest IP address",
+      "Highest MAC address",
+      "Highest router ID"
+    ],
+    "answer": "Highest priority"
+  },
+  {
+    "question": "What is the first criterion used by OSPF routers to elect a DR?",
+    "image": "",
+    "options": [
+      "Highest priority",
+      "Highest IP address",
+      "Highest MAC address",
+      "Highest router ID"
+    ],
+    "answer": "Highest priority"
+  },
+  {
+    "question": "What are two reasons that will prevent routers from forming an OSPFv2 adjacency? (Choose two.)",
+    "image": "",
+    "options": [
+      "mismatched subnet masks on the link interfaces",
+      "use of private IP addresses on the link interfaces",
+      "one router connecting to a FastEthernet port on the switch and the other connecting to a GigabitEthernet port",
+      "a mismatched Cisco IOS version that is used",
+      "mismatched OSPF Hello or Dead timers"
+    ],
+    "answer": "mismatched subnet masks on the link interfaces",
+    "answers": [
+      "mismatched subnet masks on the link interfaces",
+      "mismatched OSPF Hello or Dead timers"
+    ]
+  },
+  {
+    "question": "What command would be issued to determine if a routing protocol-initiated relationship has been made with an adjacent router?",
+    "image": "",
+    "options": [
+      "show ip protocols",
+      "ping",
+      "show ip interface brief",
+      "show ip ospf neighbor"
+    ],
+    "answer": "show ip ospf neighbor"
+  },
+  {
+    "question": "Match the OSPF state with the order in which it occurs. (Not all options are used.)",
+    "image": "images/chapter8-q60.png",
+    "options": [
+      "The IP address is incorrect for the subnet mask that is used.",
+      "The pool cannot be named ‘RELAY’.",
+      "The ip helper-address command is missing.",
+      "The router is configured as a DHCPv4 client."
+    ],
+    "answer": "The ip helper-address command is missing."
+  }
+]
