@@ -565,7 +565,10 @@
             return parseInt(inp.value, 10);
           }).sort(function (a, b) { return a - b; });
           const correctSorted = correctIndexes.slice().sort(function (a, b) { return a - b; });
-          const correct = selected.length > 0 && selectionsMatch(selected, correctSorted);
+          const needed = correctSorted.length;
+          const isReady = isMulti ? selected.length === needed : selected.length === 1;
+          const isOver = isMulti && selected.length > needed;
+          const correct = isReady && selectionsMatch(selected, correctSorted);
 
           practiceState.answers[idx] = { selectedIndexes: selected, correct: correct };
           updatePracticeSummary();
@@ -574,9 +577,15 @@
             optEl.classList.remove("correct", "incorrect");
             const isCorrectOpt = correctIndexes.indexOf(optElIdx) !== -1;
             const isSelected = selected.indexOf(optElIdx) !== -1;
-            if (isCorrectOpt) optEl.classList.add("correct");
-            if (isSelected && !isCorrectOpt) optEl.classList.add("incorrect");
+            if (isCorrectOpt && isReady) optEl.classList.add("correct");
+            if (isSelected && !isCorrectOpt && (isReady || isOver)) optEl.classList.add("incorrect");
           });
+
+          if (!isReady && !isOver && isMulti) {
+            feedback.textContent = "Select " + needed + " answers.";
+            feedback.className = "feedback";
+            return;
+          }
 
           feedback.textContent = correct ? "Correct" : "Incorrect";
           feedback.className = "feedback " + (correct ? "correct-msg" : "incorrect-msg");
