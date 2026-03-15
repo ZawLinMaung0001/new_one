@@ -376,22 +376,6 @@ body {
   color: var(--text-muted);
 }
 
-/* Practice toolbar */
-.practice-toolbar {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.practice-groups {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .exam-toolbar {
   display: flex;
   justify-content: flex-end;

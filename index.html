@@ -99,29 +99,23 @@
             <h1 class="card-title">Practice Mode</h1>
             <p class="card-subtitle">Answer one question at a time with instant feedback.</p>
           </div>
-          <div class="practice-toolbar">
-            <div class="chapter-select-wrap">
-              <label for="chapterSelect">Chapter</label>
-              <select id="chapterSelect" class="chapter-select" aria-label="Select chapter">
-                <option value="chapter6">Chapter 6</option>
-                <option value="chapter7">Chapter 7</option>
-                <option value="chapter8">Chapter 8</option>
-                <option value="chapter9">Chapter 9</option>
-                <option value="chapter10">Chapter 10</option>
-              </select>
+          <div class="study-controls">
+            <div class="control-block">
+              <div class="control-label">Chapters</div>
+              <div class="pill-row" id="practiceChapters" role="list"></div>
             </div>
-            <div class="progress-inline">
-              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                <span class="progress-fill" id="progressFill"></span>
+            <div class="control-block">
+              <div class="control-label">Groups</div>
+              <div class="pill-row" id="practiceGroups" role="list">
+                <div class="muted">Select a chapter to see groups.</div>
               </div>
-              <p class="progress-text" id="progressText">Question 0 of 0</p>
             </div>
           </div>
-          <div class="practice-groups">
-            <div class="control-label">Question Groups</div>
-            <div class="pill-row" id="practiceGroups" role="list">
-              <div class="muted">Select a chapter to see groups.</div>
+          <div class="progress-inline">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <span class="progress-fill" id="progressFill"></span>
             </div>
+            <p class="progress-text" id="progressText">Question 0 of 0</p>
           </div>
         </div>
 

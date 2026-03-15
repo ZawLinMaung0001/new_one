@@ -99,7 +99,7 @@
   const homeGoFinal = document.getElementById("homeGoFinal");
 
   // Practice mode
-  const chapterSelect = document.getElementById("chapterSelect");
+  const practiceChapters = document.getElementById("practiceChapters");
   const practiceGroups = document.getElementById("practiceGroups");
   const progressText = document.getElementById("progressText");
   const progressFill = document.getElementById("progressFill");
@@ -155,6 +155,7 @@
 
   const practiceState = {
     chapterId: "chapter6",
+    groupStartByChapter: {},
     allQuestions: [],
     questions: [],
     groupStart: 0,
@@ -398,6 +399,33 @@
   // ---------------------------------------------------------------------------
   // Practice Mode
   // ---------------------------------------------------------------------------
+  function buildPracticeChapterButtons() {
+    practiceChapters.innerHTML = "";
+    CHAPTERS.forEach(function (ch) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pill";
+      btn.textContent = ch.label;
+      btn.dataset.chapterId = ch.id;
+      btn.addEventListener("click", function () {
+        selectPracticeChapter(ch.id);
+      });
+      practiceChapters.appendChild(btn);
+    });
+  }
+
+  function selectPracticeChapter(chapterId) {
+    practiceState.chapterId = chapterId;
+    const stored = practiceState.groupStartByChapter[chapterId];
+    practiceState.groupStart = typeof stored === "number" ? stored : 0;
+
+    setActivePill(practiceChapters, function (el) {
+      return el.dataset.chapterId === chapterId;
+    });
+
+    initPracticeForChapter(chapterId);
+  }
+
   function renderPracticeGroups(total) {
     practiceGroups.innerHTML = "";
     if (!total) {
@@ -426,6 +454,7 @@
 
   function selectPracticeGroup(groupStart) {
     practiceState.groupStart = groupStart;
+    practiceState.groupStartByChapter[practiceState.chapterId] = groupStart;
     setActivePill(practiceGroups, function (el) {
       return parseInt(el.dataset.groupStart || "0", 10) === groupStart;
     });
@@ -672,8 +701,6 @@
   }
 
   async function initPracticeForChapter(chapterId) {
-    practiceState.chapterId = chapterId;
-    practiceState.groupStart = 0;
     practiceState.currentIndex = 0;
     practiceState.answers = [];
     practiceState.answered = false;
@@ -695,7 +722,7 @@
       return;
     }
 
-    selectPracticeGroup(0);
+    selectPracticeGroup(practiceState.groupStart);
   }
 
   function restartPractice() {
@@ -969,10 +996,6 @@
   homeGoPractice.addEventListener("click", function () { setMode("practice"); });
   homeGoFinal.addEventListener("click", function () { startFinalExam(); });
 
-  chapterSelect.addEventListener("change", function () {
-    initPracticeForChapter(chapterSelect.value);
-  });
-
   btnPrev.addEventListener("click", goPracticePrev);
   btnNext.addEventListener("click", goPracticeNext);
   btnRestart.addEventListener("click", restartPractice);
@@ -998,9 +1021,10 @@
   // Boot
   // ---------------------------------------------------------------------------
   buildStudyChapterButtons();
+  buildPracticeChapterButtons();
   setMode("home");
   selectStudyChapter("chapter6");
-  initPracticeForChapter("chapter6");
+  selectPracticeChapter("chapter6");
 
   // ---------------------------------------------------------------------------
   // PWA: Service worker registration (Android-friendly, lightweight)
