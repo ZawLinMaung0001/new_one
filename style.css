@@ -150,6 +150,33 @@ body {
   font-size: 0.92rem;
 }
 
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.home-card {
+  background: rgba(15, 20, 25, 0.5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.home-card h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.home-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
 .chapter-select-wrap {
   display: flex;
   align-items: center;
@@ -242,6 +269,12 @@ body {
   gap: 0.9rem;
 }
 
+.study-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .qcard {
   background: rgba(15, 20, 25, 0.5);
   border: 1px solid var(--border);
@@ -309,6 +342,11 @@ body {
   background: var(--correct-bg);
 }
 
+.study-option.incorrect {
+  border-color: var(--incorrect);
+  background: var(--incorrect-bg);
+}
+
 .opt-label {
   min-width: 1.75rem;
   color: var(--text-muted);
@@ -345,6 +383,12 @@ body {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.exam-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 
 .progress-inline {
@@ -487,6 +531,26 @@ body {
 }
 
 .feedback.incorrect-msg {
+  background: var(--incorrect-bg);
+  color: var(--incorrect);
+  border: 1px solid var(--incorrect);
+}
+
+.exam-verdict {
+  margin: 0.75rem 0 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.exam-verdict.correct-msg {
+  background: var(--correct-bg);
+  color: var(--correct);
+  border: 1px solid var(--correct);
+}
+
+.exam-verdict.incorrect-msg {
   background: var(--incorrect-bg);
   color: var(--incorrect);
   border: 1px solid var(--incorrect);

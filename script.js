@@ -76,10 +76,14 @@
   // ---------------------------------------------------------------------------
   const loadingWrap = document.getElementById("loadingWrap");
 
+  const navHome = document.getElementById("navHome");
   const navStudy = document.getElementById("navStudy");
   const navPractice = document.getElementById("navPractice");
+  const navFinal = document.getElementById("navFinal");
+  const homeSection = document.getElementById("homeSection");
   const studySection = document.getElementById("studySection");
   const practiceSection = document.getElementById("practiceSection");
+  const examSection = document.getElementById("examSection");
 
   // Study mode
   const studyChapters = document.getElementById("studyChapters");
@@ -87,6 +91,12 @@
   const studyHeading = document.getElementById("studyHeading");
   const studySubheading = document.getElementById("studySubheading");
   const studyContent = document.getElementById("studyContent");
+  const btnChapterExam = document.getElementById("btnChapterExam");
+
+  // Home quick actions
+  const homeGoStudy = document.getElementById("homeGoStudy");
+  const homeGoPractice = document.getElementById("homeGoPractice");
+  const homeGoFinal = document.getElementById("homeGoFinal");
 
   // Practice mode
   const chapterSelect = document.getElementById("chapterSelect");
@@ -108,6 +118,29 @@
   const btnNext = document.getElementById("btnNext");
   const btnRestart = document.getElementById("btnRestart");
 
+  // Exam mode
+  const examIntroCard = document.getElementById("examIntroCard");
+  const examTitle = document.getElementById("examTitle");
+  const examSubtitle = document.getElementById("examSubtitle");
+  const btnStartExam = document.getElementById("btnStartExam");
+  const examQuizCard = document.getElementById("examQuizCard");
+  const examResultsCard = document.getElementById("examResultsCard");
+  const examProgressText = document.getElementById("examProgressText");
+  const examProgressFill = document.getElementById("examProgressFill");
+  const examQuestionNumber = document.getElementById("examQuestionNumber");
+  const examQuestionText = document.getElementById("examQuestionText");
+  const examQuestionImageWrap = document.getElementById("examQuestionImageWrap");
+  const examQuestionImage = document.getElementById("examQuestionImage");
+  const examOptionsContainer = document.getElementById("examOptionsContainer");
+  const examBtnPrev = document.getElementById("examBtnPrev");
+  const examBtnNext = document.getElementById("examBtnNext");
+  const examResultsTitle = document.getElementById("examResultsTitle");
+  const examCorrectCount = document.getElementById("examCorrectCount");
+  const examIncorrectCount = document.getElementById("examIncorrectCount");
+  const examTotalScore = document.getElementById("examTotalScore");
+  const examResultsList = document.getElementById("examResultsList");
+  const examRestart = document.getElementById("examRestart");
+
   // ---------------------------------------------------------------------------
   // App state
   // ---------------------------------------------------------------------------
@@ -127,17 +160,37 @@
     answered: false,
   };
 
+  const examState = {
+    mode: "final", // "final" | "chapter"
+    chapterId: "chapter6",
+    questions: [],
+    currentIndex: 0,
+    answers: [], // { selectedIndexes: number[] }
+  };
+
   // ---------------------------------------------------------------------------
   // Mode switching
   // ---------------------------------------------------------------------------
   function setMode(mode) {
+    const isHome = mode === "home";
     const isStudy = mode === "study";
+    const isPractice = mode === "practice";
+    const isExam = mode === "exam";
+
+    homeSection.classList.toggle("hidden", !isHome);
     studySection.classList.toggle("hidden", !isStudy);
-    practiceSection.classList.toggle("hidden", isStudy);
+    practiceSection.classList.toggle("hidden", !isPractice);
+    examSection.classList.toggle("hidden", !isExam);
+
+    navHome.classList.toggle("is-active", isHome);
     navStudy.classList.toggle("is-active", isStudy);
-    navPractice.classList.toggle("is-active", !isStudy);
+    navPractice.classList.toggle("is-active", isPractice);
+    navFinal.classList.toggle("is-active", isExam);
+
+    navHome.setAttribute("aria-current", isHome ? "page" : "false");
     navStudy.setAttribute("aria-current", isStudy ? "page" : "false");
-    navPractice.setAttribute("aria-current", !isStudy ? "page" : "false");
+    navPractice.setAttribute("aria-current", isPractice ? "page" : "false");
+    navFinal.setAttribute("aria-current", isExam ? "page" : "false");
   }
 
   // ---------------------------------------------------------------------------
@@ -157,6 +210,31 @@
     if (q.correctIndexes && q.correctIndexes.length) return q.correctIndexes;
     if (typeof q.correctIndex === "number") return [q.correctIndex];
     return [];
+  }
+
+  function shuffle(list) {
+    const arr = list.slice();
+    for (let i = arr.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tmp;
+    }
+    return arr;
+  }
+
+  function sampleQuestions(list, count) {
+    if (!list.length) return [];
+    const max = Math.min(count, list.length);
+    return shuffle(list).slice(0, max);
+  }
+
+  function selectionsMatch(a, b) {
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i += 1) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
   }
 
   async function ensureChapterLoaded(chapterId) {
@@ -193,7 +271,7 @@
   }
 
   function makeGroupLabel(start, end) {
-    return "Questions " + start + "–" + end;
+    return start + "-" + end;
   }
 
   async function selectStudyChapter(chapterId) {
@@ -559,10 +637,267 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Exam Mode (Chapter Practice + Final)
+  // ---------------------------------------------------------------------------
+  function showExamIntro(title, subtitle, buttonLabel) {
+    examTitle.textContent = title;
+    examSubtitle.textContent = subtitle;
+    btnStartExam.textContent = buttonLabel;
+    examIntroCard.classList.remove("hidden");
+    examQuizCard.classList.add("hidden");
+    examResultsCard.classList.add("hidden");
+  }
+
+  function showExamQuiz() {
+    examIntroCard.classList.add("hidden");
+    examQuizCard.classList.remove("hidden");
+    examResultsCard.classList.add("hidden");
+  }
+
+  function showExamResults() {
+    examQuizCard.classList.add("hidden");
+    examResultsCard.classList.remove("hidden");
+  }
+
+  function updateExamProgress() {
+    const total = examState.questions.length;
+    const current = total ? examState.currentIndex + 1 : 0;
+    examProgressText.textContent = "Question " + current + " of " + total;
+    const pct = total > 0 ? (current / total) * 100 : 0;
+    examProgressFill.style.width = pct + "%";
+    const bar = examProgressFill.parentElement;
+    if (bar) bar.setAttribute("aria-valuenow", String(Math.round(pct)));
+  }
+
+  function getExamSelectedIndexes() {
+    return Array.from(examOptionsContainer.querySelectorAll("input:checked")).map(function (inp) {
+      return parseInt(inp.value, 10);
+    });
+  }
+
+  function storeExamSelection() {
+    const selected = getExamSelectedIndexes();
+    examState.answers[examState.currentIndex] = { selectedIndexes: selected };
+  }
+
+  function updateExamNextState() {
+    const selected = getExamSelectedIndexes();
+    examBtnNext.disabled = selected.length === 0;
+  }
+
+  function renderExamQuestion() {
+    const q = examState.questions[examState.currentIndex];
+    if (!q) return;
+
+    const correctIndexes = getCorrectIndexes(q);
+    const isMulti = correctIndexes.length > 1;
+    const labels = OPTION_LABELS.slice(0, q.options.length);
+    const existing = examState.answers[examState.currentIndex];
+    const selectedIndexes = existing ? existing.selectedIndexes || [] : [];
+
+    examQuestionNumber.textContent = "Q" + (examState.currentIndex + 1);
+    examQuestionText.textContent = q.question;
+
+    if (q.image && q.image.trim()) {
+      examQuestionImageWrap.hidden = false;
+      examQuestionImage.style.display = "";
+      examQuestionImage.src = q.image;
+      examQuestionImage.alt = "Refer to exhibit";
+      examQuestionImage.onerror = function () { examQuestionImageWrap.hidden = true; };
+    } else {
+      examQuestionImageWrap.hidden = true;
+      examQuestionImage.src = "";
+    }
+
+    examOptionsContainer.innerHTML = "";
+    q.options.forEach(function (optionText, index) {
+      const id = "exam-opt-" + examState.currentIndex + "-" + index;
+      const label = document.createElement("label");
+      label.className = "option";
+      label.htmlFor = id;
+
+      const input = document.createElement("input");
+      input.type = isMulti ? "checkbox" : "radio";
+      input.name = isMulti ? "exam-answer-" + examState.currentIndex : "exam-answer";
+      input.value = String(index);
+      input.id = id;
+      input.checked = selectedIndexes.indexOf(index) !== -1;
+      input.addEventListener("change", updateExamNextState);
+
+      const spanLabel = document.createElement("span");
+      spanLabel.textContent = (labels[index] || "?") + ".";
+      const spanText = document.createElement("span");
+      spanText.textContent = optionText;
+
+      label.appendChild(input);
+      label.appendChild(spanLabel);
+      label.appendChild(spanText);
+      examOptionsContainer.appendChild(label);
+    });
+
+    examBtnPrev.disabled = examState.currentIndex === 0;
+    examBtnNext.textContent = examState.currentIndex === examState.questions.length - 1 ? "Finish Exam" : "Next";
+
+    updateExamProgress();
+    updateExamNextState();
+  }
+
+  function renderExamResults() {
+    const total = examState.questions.length;
+    let correctCount = 0;
+    examResultsList.innerHTML = "";
+
+    examState.questions.forEach(function (q, index) {
+      const correctIndexes = getCorrectIndexes(q).slice().sort(function (a, b) { return a - b; });
+      const answer = examState.answers[index] || { selectedIndexes: [] };
+      const selected = (answer.selectedIndexes || []).slice().sort(function (a, b) { return a - b; });
+      const isCorrect = selectionsMatch(selected, correctIndexes);
+      if (isCorrect) correctCount += 1;
+
+      const card = document.createElement("div");
+      card.className = "qcard";
+
+      const head = document.createElement("div");
+      head.className = "qcard-head";
+      head.innerHTML =
+        '<div><div class="qbadge">Q' +
+        (index + 1) +
+        '</div><p class="qtext">' +
+        escapeHtml(q.question) +
+        "</p></div>";
+      card.appendChild(head);
+
+      if (q.image && q.image.trim()) {
+        const wrap = document.createElement("div");
+        wrap.className = "qimage-wrap";
+        const img = document.createElement("img");
+        img.className = "qimage";
+        img.src = q.image;
+        img.alt = "Refer to exhibit";
+        img.onerror = function () { wrap.remove(); };
+        wrap.appendChild(img);
+        card.appendChild(wrap);
+      }
+
+      const ul = document.createElement("ul");
+      ul.className = "study-options";
+      const labels = OPTION_LABELS.slice(0, q.options.length);
+      q.options.forEach(function (opt, optIdx) {
+        const li = document.createElement("li");
+        const isCorrectOpt = correctIndexes.indexOf(optIdx) !== -1;
+        const isSelected = selected.indexOf(optIdx) !== -1;
+        li.className = "study-option";
+        if (isCorrectOpt) li.classList.add("correct");
+        if (isSelected && !isCorrectOpt) li.classList.add("incorrect");
+        li.innerHTML =
+          '<span class="opt-label">' +
+          escapeHtml(labels[optIdx] + ".") +
+          "</span>" +
+          "<span>" +
+          escapeHtml(opt) +
+          "</span>";
+        ul.appendChild(li);
+      });
+      card.appendChild(ul);
+
+      const verdict = document.createElement("p");
+      verdict.className = "exam-verdict " + (isCorrect ? "correct-msg" : "incorrect-msg");
+      verdict.textContent = isCorrect ? "Correct" : "Incorrect";
+      card.appendChild(verdict);
+
+      examResultsList.appendChild(card);
+    });
+
+    const incorrectCount = total - correctCount;
+    examCorrectCount.textContent = correctCount;
+    examIncorrectCount.textContent = incorrectCount;
+    examTotalScore.textContent = correctCount + " / " + total;
+  }
+
+  async function startExamWithQuestions(title, subtitle, questions) {
+    examTitle.textContent = title;
+    examSubtitle.textContent = subtitle;
+    examResultsTitle.textContent = title + " Results";
+
+    examState.currentIndex = 0;
+    examState.questions = questions;
+    examState.answers = [];
+
+    showExamQuiz();
+
+    if (!questions.length) {
+      examOptionsContainer.innerHTML = "";
+      examQuestionText.textContent = "No questions found.";
+      examProgressText.textContent = "Question 0 of 0";
+      examBtnPrev.disabled = true;
+      examBtnNext.disabled = true;
+      return;
+    }
+
+    renderExamQuestion();
+  }
+
+  async function startChapterExam(chapterId) {
+    examState.mode = "chapter";
+    examState.chapterId = chapterId;
+    setMode("exam");
+    showLoading(true);
+    const questions = await ensureChapterLoaded(chapterId);
+    showLoading(false);
+    const sampled = sampleQuestions(questions, 20);
+    const label = CHAPTERS.find(function (c) { return c.id === chapterId; });
+    const title = (label ? label.label : "Chapter") + " Practice Exam";
+    const subtitle = sampled.length + " questions, 1 mark each.";
+    startExamWithQuestions(title, subtitle, sampled);
+  }
+
+  async function startFinalExam() {
+    examState.mode = "final";
+    setMode("exam");
+    showLoading(true);
+    const lists = await Promise.all(CHAPTERS.map(function (c) { return ensureChapterLoaded(c.id); }));
+    showLoading(false);
+    const merged = [].concat.apply([], lists);
+    const sampled = sampleQuestions(merged, 50);
+    startExamWithQuestions("Final Exam", "50 questions from Chapters 6-10.", sampled);
+  }
+
+  function openFinalExamIntro() {
+    examState.mode = "final";
+    setMode("exam");
+    showExamIntro("Final Exam", "50 questions from Chapters 6-10.", "Start Final Exam");
+  }
+
+  function goExamPrev() {
+    if (examState.currentIndex <= 0) return;
+    storeExamSelection();
+    examState.currentIndex -= 1;
+    renderExamQuestion();
+  }
+
+  function goExamNext() {
+    storeExamSelection();
+    if (examState.currentIndex < examState.questions.length - 1) {
+      examState.currentIndex += 1;
+      renderExamQuestion();
+      return;
+    }
+
+    renderExamResults();
+    showExamResults();
+  }
+
+  // ---------------------------------------------------------------------------
   // Events
   // ---------------------------------------------------------------------------
+  navHome.addEventListener("click", function () { setMode("home"); });
   navStudy.addEventListener("click", function () { setMode("study"); });
   navPractice.addEventListener("click", function () { setMode("practice"); });
+  navFinal.addEventListener("click", function () { openFinalExamIntro(); });
+
+  homeGoStudy.addEventListener("click", function () { setMode("study"); });
+  homeGoPractice.addEventListener("click", function () { setMode("practice"); });
+  homeGoFinal.addEventListener("click", function () { startFinalExam(); });
 
   chapterSelect.addEventListener("change", function () {
     initPracticeForChapter(chapterSelect.value);
@@ -572,11 +907,28 @@
   btnNext.addEventListener("click", goPracticeNext);
   btnRestart.addEventListener("click", restartPractice);
 
+  btnChapterExam.addEventListener("click", function () {
+    startChapterExam(studyState.chapterId);
+  });
+
+  btnStartExam.addEventListener("click", function () {
+    startFinalExam();
+  });
+  examBtnPrev.addEventListener("click", goExamPrev);
+  examBtnNext.addEventListener("click", goExamNext);
+  examRestart.addEventListener("click", function () {
+    if (examState.mode === "chapter") {
+      startChapterExam(examState.chapterId);
+    } else {
+      startFinalExam();
+    }
+  });
+
   // ---------------------------------------------------------------------------
   // Boot
   // ---------------------------------------------------------------------------
   buildStudyChapterButtons();
-  setMode("study");
+  setMode("home");
   selectStudyChapter("chapter6");
   initPracticeForChapter("chapter6");
 

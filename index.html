@@ -19,17 +19,46 @@
         <div class="brand-subtitle">Study & Practice</div>
       </div>
       <nav class="nav" aria-label="Mode navigation">
+        <button type="button" class="nav-item" id="navHome">Home</button>
         <button type="button" class="nav-item is-active" id="navStudy" aria-current="page">Study</button>
         <button type="button" class="nav-item" id="navPractice">Practice</button>
+        <button type="button" class="nav-item" id="navFinal">Final Exam</button>
       </nav>
     </header>
 
     <!-- Global loading indicator -->
     <div class="loading-wrap hidden" id="loadingWrap">
-      <p>Loading questions…</p>
+      <p>Loading questions...</p>
     </div>
 
     <main class="main">
+      <!-- Home -->
+      <section class="mode-section hidden" id="homeSection">
+        <div class="card">
+          <div class="card-header">
+            <h1 class="card-title">Welcome</h1>
+            <p class="card-subtitle">Study by chapter, practice with feedback, or take a timed-style exam.</p>
+          </div>
+          <div class="home-grid">
+            <div class="home-card">
+              <h2>Study Mode</h2>
+              <p>Review questions with correct answers highlighted.</p>
+              <button type="button" class="btn" id="homeGoStudy">Go to Study</button>
+            </div>
+            <div class="home-card">
+              <h2>Practice Mode</h2>
+              <p>Answer one question at a time with instant feedback.</p>
+              <button type="button" class="btn" id="homeGoPractice">Go to Practice</button>
+            </div>
+            <div class="home-card">
+              <h2>Final Exam</h2>
+              <p>Take a 50-question mixed exam from chapters 6-10.</p>
+              <button type="button" class="btn btn-next" id="homeGoFinal">Start Final Exam</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Study Mode -->
       <section class="mode-section" id="studySection">
         <div class="card">
@@ -57,6 +86,9 @@
             <p class="card-subtitle" id="studySubheading">Choose a group to view answers.</p>
           </div>
           <div class="study-content" id="studyContent"></div>
+          <div class="study-actions">
+            <button type="button" class="btn btn-next" id="btnChapterExam">Start Chapter Practice Exam</button>
+          </div>
         </div>
       </section>
 
@@ -121,6 +153,60 @@
             </div>
           </div>
           <button type="button" class="btn btn-restart" id="btnRestart">Start Again</button>
+        </section>
+      </section>
+
+      <!-- Final / Chapter Exam -->
+      <section class="mode-section hidden" id="examSection">
+        <div class="card" id="examIntroCard">
+          <div class="card-header">
+            <h1 class="card-title" id="examTitle">Final Exam</h1>
+            <p class="card-subtitle" id="examSubtitle">50 questions from Chapters 6-10.</p>
+          </div>
+          <button type="button" class="btn btn-next" id="btnStartExam">Start Final Exam</button>
+        </div>
+
+        <section class="quiz-section card hidden" id="examQuizCard">
+          <div class="exam-toolbar">
+            <div class="progress-inline">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <span class="progress-fill" id="examProgressFill"></span>
+              </div>
+              <p class="progress-text" id="examProgressText">Question 0 of 0</p>
+            </div>
+          </div>
+          <div class="question-block">
+            <p class="question-number" id="examQuestionNumber">Q1</p>
+            <h2 class="question-text" id="examQuestionText"></h2>
+            <div class="question-image-wrap" id="examQuestionImageWrap" hidden>
+              <img id="examQuestionImage" src="data:image/gif;base64,R0lGOODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Refer to exhibit" class="question-image" />
+            </div>
+            <div class="options" id="examOptionsContainer" role="group" aria-label="Answer options"></div>
+          </div>
+          <div class="nav-buttons">
+            <button type="button" class="btn btn-prev" id="examBtnPrev" disabled>Previous</button>
+            <button type="button" class="btn btn-next" id="examBtnNext" disabled>Next</button>
+          </div>
+        </section>
+
+        <section class="results-section card hidden" id="examResultsCard">
+          <h2 id="examResultsTitle">Exam Complete</h2>
+          <div class="results-stats">
+            <div class="stat correct">
+              <span class="stat-value" id="examCorrectCount">0</span>
+              <span class="stat-label">Correct</span>
+            </div>
+            <div class="stat incorrect">
+              <span class="stat-value" id="examIncorrectCount">0</span>
+              <span class="stat-label">Incorrect</span>
+            </div>
+            <div class="stat total">
+              <span class="stat-value" id="examTotalScore">0</span>
+              <span class="stat-label">Score</span>
+            </div>
+          </div>
+          <div class="study-content" id="examResultsList"></div>
+          <button type="button" class="btn btn-restart" id="examRestart">Take Another Exam</button>
         </section>
       </section>
     </main>
