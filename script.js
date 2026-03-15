@@ -284,7 +284,8 @@
 
     const questions = await ensureChapterLoaded(chapterId);
     renderStudyGroups(questions.length);
-    studyHeading.textContent = CHAPTERS.find((c) => c.id === chapterId)?.label || "Questions";
+    const chapterMatch = CHAPTERS.find(function (c) { return c.id === chapterId; });
+    studyHeading.textContent = chapterMatch ? chapterMatch.label : "Questions";
     studySubheading.textContent = "Select a group to view answers.";
     studyContent.innerHTML = '<div class="muted">Choose a group above.</div>';
   }

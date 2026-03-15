@@ -3,7 +3,7 @@
    - Runtime cache for images
 */
 
-const VERSION = "v1";
+const VERSION = "v2";
 const PRECACHE = `precache-${VERSION}`;
 const RUNTIME = `runtime-${VERSION}`;
 
@@ -96,4 +96,3 @@ self.addEventListener("fetch", (event) => {
     );
   }
 });
-
