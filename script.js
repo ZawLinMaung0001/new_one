@@ -103,20 +103,12 @@
   const practiceGroups = document.getElementById("practiceGroups");
   const progressText = document.getElementById("progressText");
   const progressFill = document.getElementById("progressFill");
-  const quizSection = document.getElementById("quizSection");
-  const resultsSection = document.getElementById("resultsSection");
-  const questionNumber = document.getElementById("questionNumber");
-  const questionText = document.getElementById("questionText");
-  const questionImageWrap = document.getElementById("questionImageWrap");
-  const questionImage = document.getElementById("questionImage");
-  const multiHint = document.getElementById("multiHint");
-  const optionsContainer = document.getElementById("optionsContainer");
-  const feedback = document.getElementById("feedback");
+  const practiceHeading = document.getElementById("practiceHeading");
+  const practiceSubheading = document.getElementById("practiceSubheading");
+  const practiceSet = document.getElementById("practiceSet");
   const correctCountEl = document.getElementById("correctCount");
   const incorrectCountEl = document.getElementById("incorrectCount");
   const totalScoreEl = document.getElementById("totalScore");
-  const btnPrev = document.getElementById("btnPrev");
-  const btnNext = document.getElementById("btnNext");
   const btnRestart = document.getElementById("btnRestart");
 
   // Exam mode
@@ -162,7 +154,6 @@
     groupSize: 10,
     currentIndex: 0,
     answers: [], // { selectedIndexes: number[], correct: boolean }
-    answered: false,
   };
 
   const examState = {
@@ -466,244 +457,159 @@
     practiceState.answers = [];
     practiceState.answered = false;
 
-    showPracticeQuiz();
-
-    if (!practiceState.questions.length) {
-      progressText.textContent = "Question 0 of 0";
-      feedback.className = "feedback incorrect-msg";
-      feedback.textContent = "No questions found. Run the scraper: npm run scrape.";
-      optionsContainer.innerHTML = "";
-      btnPrev.disabled = true;
-      btnNext.disabled = true;
-      return;
-    }
-
-    btnNext.disabled = false;
-    renderPracticeQuestion();
-  }
-
-  function showPracticeQuiz() {
-    quizSection.classList.remove("hidden");
-    resultsSection.classList.add("hidden");
-  }
-
-  function showPracticeResults() {
-    quizSection.classList.add("hidden");
-    resultsSection.classList.remove("hidden");
-    const correct = practiceState.answers.filter(function (a) { return a.correct; }).length;
-    const incorrect = practiceState.answers.length - correct;
-    const total = practiceState.questions.length;
-    correctCountEl.textContent = correct;
-    incorrectCountEl.textContent = incorrect;
-    totalScoreEl.textContent = correct + " / " + total;
+    renderPracticeSet();
   }
 
   function updatePracticeProgress() {
     const total = practiceState.questions.length;
-    const current = total ? practiceState.currentIndex + 1 : 0;
     let groupLabel = "";
     if (total && practiceState.allQuestions.length) {
       const start = practiceState.groupStart + 1;
       const end = practiceState.groupStart + total;
       groupLabel = " (" + makeGroupLabel(start, end) + ")";
     }
-    progressText.textContent = "Question " + current + " of " + total + groupLabel;
-    const pct = total > 0 ? (current / total) * 100 : 0;
+    const answered = practiceState.answers.filter(function (a) { return a && a.selectedIndexes && a.selectedIndexes.length; }).length;
+    progressText.textContent = "Answered " + answered + " of " + total + groupLabel;
+    const pct = total > 0 ? (answered / total) * 100 : 0;
     progressFill.style.width = pct + "%";
     const bar = progressFill.parentElement;
     if (bar) bar.setAttribute("aria-valuenow", String(Math.round(pct)));
   }
 
-  function updatePracticeNavButtons() {
-    btnPrev.disabled = practiceState.currentIndex === 0;
-    if (practiceState.currentIndex === practiceState.questions.length - 1) {
-      btnNext.textContent = practiceState.answered ? "See Results" : "Next";
-    } else {
-      btnNext.textContent = "Next";
-    }
-  }
-
-  function renderPracticeQuestion() {
-    const q = practiceState.questions[practiceState.currentIndex];
-    if (!q) return;
-
-    const correctIndexes = getCorrectIndexes(q);
-    const isMulti = correctIndexes.length > 1;
-    questionNumber.textContent = "Q" + (practiceState.currentIndex + 1);
-    questionText.textContent = q.question;
-
-    if (q.image && q.image.trim()) {
-      questionImageWrap.hidden = false;
-      questionImage.style.display = "";
-      questionImage.src = q.image;
-      questionImage.alt = "Refer to exhibit";
-      questionImage.onerror = function () { questionImageWrap.hidden = true; };
-    } else {
-      questionImageWrap.hidden = true;
-      questionImage.src = "";
-    }
-
-    multiHint.hidden = !isMulti;
-
-    optionsContainer.innerHTML = "";
-    feedback.className = "feedback";
-    feedback.innerHTML = "";
-
-    const labels = OPTION_LABELS.slice(0, q.options.length);
-    q.options.forEach(function (optionText, index) {
-      const id = "opt-" + practiceState.currentIndex + "-" + index;
-      const label = document.createElement("label");
-      label.className = "option";
-      label.htmlFor = id;
-
-      const input = document.createElement("input");
-      input.type = isMulti ? "checkbox" : "radio";
-      input.name = isMulti ? "answer-" + practiceState.currentIndex : "answer";
-      input.value = String(index);
-      input.id = id;
-      input.disabled = practiceState.answered;
-
-      if (isMulti) input.addEventListener("change", function () { /* wait for Check */ });
-      else input.addEventListener("change", onPracticeSingleSelect);
-
-      const spanLabel = document.createElement("span");
-      spanLabel.textContent = (labels[index] || "?") + ".";
-      const spanText = document.createElement("span");
-      spanText.textContent = optionText;
-
-      label.appendChild(input);
-      label.appendChild(spanLabel);
-      label.appendChild(spanText);
-      optionsContainer.appendChild(label);
-    });
-
-    // For multi-correct, use a Check button (still vanilla, consistent with dataset).
-    if (isMulti && !practiceState.answered) {
-      const checkWrap = document.createElement("div");
-      checkWrap.className = "nav-buttons";
-      const checkBtn = document.createElement("button");
-      checkBtn.type = "button";
-      checkBtn.className = "btn btn-check";
-      checkBtn.textContent = "Check answer";
-      checkBtn.addEventListener("click", onPracticeMultiCheck);
-      checkWrap.appendChild(checkBtn);
-      optionsContainer.appendChild(checkWrap);
-    }
-
+  function updatePracticeSummary() {
+    const total = practiceState.questions.length;
+    const answered = practiceState.answers.filter(function (a) {
+      return a && a.selectedIndexes && a.selectedIndexes.length;
+    }).length;
+    const correct = practiceState.answers.filter(function (a) { return a && a.correct; }).length;
+    const incorrect = answered - correct;
+    correctCountEl.textContent = correct;
+    incorrectCountEl.textContent = incorrect;
+    totalScoreEl.textContent = answered + " / " + total;
     updatePracticeProgress();
-    updatePracticeNavButtons();
   }
 
-  function showPracticeFeedback(correct, q) {
-    const correctIndexes = getCorrectIndexes(q);
-    const labels = OPTION_LABELS.slice(0, q.options.length);
-    if (correct) {
-      feedback.className = "feedback correct-msg";
-      feedback.textContent = "Correct";
+  function renderPracticeSet() {
+    const total = practiceState.questions.length;
+    practiceSet.innerHTML = "";
+    if (!total) {
+      practiceSubheading.textContent = "No questions found for this chapter.";
+      practiceSet.innerHTML = '<div class="muted">Run the scraper: npm run scrape.</div>';
+      updatePracticeSummary();
       return;
     }
-    feedback.className = "feedback incorrect-msg";
-    const parts = correctIndexes.map(function (idx) {
-      return labels[idx] + ". " + escapeHtml(q.options[idx]);
-    });
-    feedback.innerHTML =
-      "Incorrect." +
-      ' <span class="correct-answer">Correct answer(s): ' +
-      parts.join("; ") +
-      "</span>";
-  }
 
-  function lockAndMarkPracticeOptions(selectedIndexes, correct) {
-    const q = practiceState.questions[practiceState.currentIndex];
-    const correctIndexes = getCorrectIndexes(q);
-    optionsContainer.querySelectorAll(".option").forEach(function (opt, index) {
-      opt.classList.add("disabled");
-      if (correctIndexes.indexOf(index) !== -1) opt.classList.add("correct");
-      if (!correct && selectedIndexes.indexOf(index) !== -1 && correctIndexes.indexOf(index) === -1) {
-        opt.classList.add("incorrect");
-      }
-    });
-    optionsContainer.querySelectorAll("input").forEach(function (inp) { inp.disabled = true; });
-  }
+    const startIndex = practiceState.groupStart;
+    const endIndex = Math.min(startIndex + practiceState.groupSize, practiceState.allQuestions.length);
+    practiceHeading.textContent = "Practice Set";
+    practiceSubheading.textContent = makeGroupLabel(startIndex + 1, endIndex) + " of " + practiceState.allQuestions.length;
 
-  function onPracticeSingleSelect() {
-    if (practiceState.answered) return;
-    const checked = document.querySelector('input[name="answer"]:checked');
-    if (!checked) return;
-    const selectedIndex = parseInt(checked.value, 10);
-
-    const q = practiceState.questions[practiceState.currentIndex];
-    const correctIndexes = getCorrectIndexes(q);
-    const correct = correctIndexes.length === 1 && selectedIndex === correctIndexes[0];
-
-    practiceState.answers[practiceState.currentIndex] = { selectedIndexes: [selectedIndex], correct: correct };
-    practiceState.answered = true;
-
-    showPracticeFeedback(correct, q);
-    lockAndMarkPracticeOptions([selectedIndex], correct);
-    updatePracticeNavButtons();
-  }
-
-  function onPracticeMultiCheck() {
-    const q = practiceState.questions[practiceState.currentIndex];
-    if (!q || practiceState.answered) return;
-    const correctIndexes = getCorrectIndexes(q).slice().sort(function (a, b) { return a - b; });
-    const selected = Array.from(optionsContainer.querySelectorAll('input[type="checkbox"]:checked')).map(function (inp) {
-      return parseInt(inp.value, 10);
-    }).sort(function (a, b) { return a - b; });
-    const correct = selected.length === correctIndexes.length && selected.every(function (v, i) { return v === correctIndexes[i]; });
-
-    practiceState.answers[practiceState.currentIndex] = { selectedIndexes: selected, correct: correct };
-    practiceState.answered = true;
-
-    showPracticeFeedback(correct, q);
-    lockAndMarkPracticeOptions(selected, correct);
-    const checkBtn = optionsContainer.querySelector(".btn-check");
-    if (checkBtn) checkBtn.disabled = true;
-    updatePracticeNavButtons();
-  }
-
-  function goPracticePrev() {
-    if (practiceState.currentIndex <= 0) return;
-    practiceState.currentIndex--;
-    practiceState.answered = !!practiceState.answers[practiceState.currentIndex];
-    renderPracticeQuestion();
-
-    // If revisiting answered question, re-apply markings
-    const ans = practiceState.answers[practiceState.currentIndex];
-    if (ans) {
-      const q = practiceState.questions[practiceState.currentIndex];
+    practiceState.questions.forEach(function (q, idx) {
+      const qIndex = startIndex + idx;
       const correctIndexes = getCorrectIndexes(q);
-      const correct = ans.correct;
-      showPracticeFeedback(correct, q);
-      lockAndMarkPracticeOptions(ans.selectedIndexes || [], correct);
-    }
-  }
+      const isMulti = correctIndexes.length > 1;
+      const labels = OPTION_LABELS.slice(0, q.options.length);
 
-  function goPracticeNext() {
-    if (practiceState.currentIndex < practiceState.questions.length - 1) {
-      practiceState.currentIndex++;
-      practiceState.answered = !!practiceState.answers[practiceState.currentIndex];
-      renderPracticeQuestion();
+      const card = document.createElement("div");
+      card.className = "qcard";
+      card.dataset.practiceIndex = String(idx);
 
-      const ans = practiceState.answers[practiceState.currentIndex];
-      if (ans) {
-        const q = practiceState.questions[practiceState.currentIndex];
-        showPracticeFeedback(ans.correct, q);
-        lockAndMarkPracticeOptions(ans.selectedIndexes || [], ans.correct);
+      const head = document.createElement("div");
+      head.className = "qcard-head";
+      head.innerHTML =
+        '<div><div class="qbadge">Q' +
+        (qIndex + 1) +
+        '</div><p class="qtext">' +
+        escapeHtml(q.question) +
+        "</p></div>";
+      card.appendChild(head);
+
+      if (q.image && q.image.trim()) {
+        const wrap = document.createElement("div");
+        wrap.className = "qimage-wrap";
+        const img = document.createElement("img");
+        img.className = "qimage";
+        img.src = q.image;
+        img.alt = "Refer to exhibit";
+        img.onerror = function () { wrap.remove(); };
+        wrap.appendChild(img);
+        card.appendChild(wrap);
       }
-      return;
-    }
 
-    // end
-    if (!practiceState.answers[practiceState.currentIndex] && !practiceState.answered) return;
-    showPracticeResults();
+      if (isMulti) {
+        const hint = document.createElement("p");
+        hint.className = "multi-hint";
+        hint.textContent = "Choose all that apply.";
+        card.appendChild(hint);
+      }
+
+      const optionsWrap = document.createElement("div");
+      optionsWrap.className = "options";
+      optionsWrap.setAttribute("role", "group");
+      optionsWrap.setAttribute("aria-label", "Answer options");
+
+      q.options.forEach(function (optionText, optIdx) {
+        const id = "practice-opt-" + qIndex + "-" + optIdx;
+        const label = document.createElement("label");
+        label.className = "option";
+        label.htmlFor = id;
+
+        const input = document.createElement("input");
+        input.type = isMulti ? "checkbox" : "radio";
+        input.name = isMulti ? "practice-answer-" + qIndex : "practice-answer-" + qIndex;
+        input.value = String(optIdx);
+        input.id = id;
+
+        input.addEventListener("change", function () {
+          const selected = Array.from(optionsWrap.querySelectorAll("input:checked")).map(function (inp) {
+            return parseInt(inp.value, 10);
+          }).sort(function (a, b) { return a - b; });
+          const correctSorted = correctIndexes.slice().sort(function (a, b) { return a - b; });
+          const correct = selected.length > 0 && selectionsMatch(selected, correctSorted);
+
+          practiceState.answers[idx] = { selectedIndexes: selected, correct: correct };
+          updatePracticeSummary();
+
+          optionsWrap.querySelectorAll(".option").forEach(function (optEl, optElIdx) {
+            optEl.classList.remove("correct", "incorrect");
+            const isCorrectOpt = correctIndexes.indexOf(optElIdx) !== -1;
+            const isSelected = selected.indexOf(optElIdx) !== -1;
+            if (isCorrectOpt) optEl.classList.add("correct");
+            if (isSelected && !isCorrectOpt) optEl.classList.add("incorrect");
+          });
+
+          feedback.textContent = correct ? "Correct" : "Incorrect";
+          feedback.className = "feedback " + (correct ? "correct-msg" : "incorrect-msg");
+        });
+
+        const spanLabel = document.createElement("span");
+        spanLabel.textContent = (labels[optIdx] || "?") + ".";
+        const spanText = document.createElement("span");
+        spanText.textContent = optionText;
+
+        label.appendChild(input);
+        label.appendChild(spanLabel);
+        label.appendChild(spanText);
+        optionsWrap.appendChild(label);
+      });
+
+      const feedback = document.createElement("div");
+      feedback.className = "feedback";
+      feedback.setAttribute("role", "status");
+      feedback.setAttribute("aria-live", "polite");
+      feedback.textContent = "Select an answer.";
+
+      card.appendChild(optionsWrap);
+      card.appendChild(feedback);
+      practiceSet.appendChild(card);
+    });
+
+    updatePracticeSummary();
   }
 
   async function initPracticeForChapter(chapterId) {
     practiceState.currentIndex = 0;
     practiceState.answers = [];
-    practiceState.answered = false;
 
     showLoading(true);
     const questions = await ensureChapterLoaded(chapterId);
@@ -713,12 +619,9 @@
     renderPracticeGroups(questions.length);
 
     if (!questions.length) {
-      progressText.textContent = "Question 0 of 0";
-      feedback.className = "feedback incorrect-msg";
-      feedback.textContent = "No questions found. Run the scraper: npm run scrape.";
-      optionsContainer.innerHTML = "";
-      btnPrev.disabled = true;
-      btnNext.disabled = true;
+      progressText.textContent = "Answered 0 of 0";
+      practiceSet.innerHTML = "";
+      updatePracticeSummary();
       return;
     }
 
@@ -730,7 +633,7 @@
       selectPracticeGroup(practiceState.groupStart);
       return;
     }
-    initPracticeForChapter(chapterSelect.value);
+    initPracticeForChapter(practiceState.chapterId);
   }
 
   // ---------------------------------------------------------------------------
@@ -996,8 +899,6 @@
   homeGoPractice.addEventListener("click", function () { setMode("practice"); });
   homeGoFinal.addEventListener("click", function () { startFinalExam(); });
 
-  btnPrev.addEventListener("click", goPracticePrev);
-  btnNext.addEventListener("click", goPracticeNext);
   btnRestart.addEventListener("click", restartPractice);
 
   btnChapterExam.addEventListener("click", function () {

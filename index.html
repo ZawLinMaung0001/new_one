@@ -119,25 +119,16 @@
           </div>
         </div>
 
-        <section class="quiz-section card" id="quizSection">
-          <div class="question-block">
-            <p class="question-number" id="questionNumber">Q1</p>
-            <h2 class="question-text" id="questionText"></h2>
-            <div class="question-image-wrap" id="questionImageWrap" hidden>
-              <img id="questionImage" src="data:image/gif;base64,R0lGOODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Refer to exhibit" class="question-image" />
-            </div>
-            <p class="multi-hint" id="multiHint" hidden>Choose all that apply.</p>
-            <div class="options" id="optionsContainer" role="group" aria-label="Answer options"></div>
+        <section class="card" id="practiceSetCard">
+          <div class="card-header">
+            <h2 class="card-title" id="practiceHeading">Practice Set</h2>
+            <p class="card-subtitle" id="practiceSubheading">Choose a group to start practicing.</p>
           </div>
-          <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
-          <div class="nav-buttons">
-            <button type="button" class="btn btn-prev" id="btnPrev" disabled>Previous</button>
-            <button type="button" class="btn btn-next" id="btnNext">Next</button>
-          </div>
+          <div class="study-content" id="practiceSet"></div>
         </section>
 
-        <section class="results-section card hidden" id="resultsSection">
-          <h2>Practice Complete</h2>
+        <section class="results-section card" id="practiceSummary">
+          <h2>Practice Summary</h2>
           <div class="results-stats">
             <div class="stat correct">
               <span class="stat-value" id="correctCount">0</span>
@@ -149,10 +140,10 @@
             </div>
             <div class="stat total">
               <span class="stat-value" id="totalScore">0</span>
-              <span class="stat-label">Total Score</span>
+              <span class="stat-label">Answered</span>
             </div>
           </div>
-          <button type="button" class="btn btn-restart" id="btnRestart">Start Again</button>
+          <button type="button" class="btn btn-restart" id="btnRestart">Reset This Group</button>
         </section>
       </section>
 
