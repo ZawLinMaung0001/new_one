@@ -385,6 +385,13 @@ body {
   flex-wrap: wrap;
 }
 
+.practice-groups {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .exam-toolbar {
   display: flex;
   justify-content: flex-end;

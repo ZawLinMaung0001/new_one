@@ -100,6 +100,7 @@
 
   // Practice mode
   const chapterSelect = document.getElementById("chapterSelect");
+  const practiceGroups = document.getElementById("practiceGroups");
   const progressText = document.getElementById("progressText");
   const progressFill = document.getElementById("progressFill");
   const quizSection = document.getElementById("quizSection");
@@ -154,7 +155,10 @@
 
   const practiceState = {
     chapterId: "chapter6",
+    allQuestions: [],
     questions: [],
+    groupStart: 0,
+    groupSize: 10,
     currentIndex: 0,
     answers: [], // { selectedIndexes: number[], correct: boolean }
     answered: false,
@@ -394,6 +398,61 @@
   // ---------------------------------------------------------------------------
   // Practice Mode
   // ---------------------------------------------------------------------------
+  function renderPracticeGroups(total) {
+    practiceGroups.innerHTML = "";
+    if (!total) {
+      practiceGroups.innerHTML = '<div class="muted">No questions found. Run the scraper: npm run scrape.</div>';
+      return;
+    }
+
+    const groupSize = practiceState.groupSize;
+    for (let start = 1; start <= total; start += groupSize) {
+      const end = Math.min(start + groupSize - 1, total);
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pill";
+      btn.textContent = makeGroupLabel(start, end);
+      btn.dataset.groupStart = String(start - 1);
+      btn.addEventListener("click", function () {
+        selectPracticeGroup(parseInt(btn.dataset.groupStart, 10));
+      });
+      practiceGroups.appendChild(btn);
+    }
+
+    setActivePill(practiceGroups, function (el) {
+      return parseInt(el.dataset.groupStart || "0", 10) === practiceState.groupStart;
+    });
+  }
+
+  function selectPracticeGroup(groupStart) {
+    practiceState.groupStart = groupStart;
+    setActivePill(practiceGroups, function (el) {
+      return parseInt(el.dataset.groupStart || "0", 10) === groupStart;
+    });
+
+    const total = practiceState.allQuestions.length;
+    const endIndex = Math.min(groupStart + practiceState.groupSize, total);
+    practiceState.questions = practiceState.allQuestions.slice(groupStart, endIndex);
+    practiceState.currentIndex = 0;
+    practiceState.answers = [];
+    practiceState.answered = false;
+
+    showPracticeQuiz();
+
+    if (!practiceState.questions.length) {
+      progressText.textContent = "Question 0 of 0";
+      feedback.className = "feedback incorrect-msg";
+      feedback.textContent = "No questions found. Run the scraper: npm run scrape.";
+      optionsContainer.innerHTML = "";
+      btnPrev.disabled = true;
+      btnNext.disabled = true;
+      return;
+    }
+
+    btnNext.disabled = false;
+    renderPracticeQuestion();
+  }
+
   function showPracticeQuiz() {
     quizSection.classList.remove("hidden");
     resultsSection.classList.add("hidden");
@@ -413,7 +472,13 @@
   function updatePracticeProgress() {
     const total = practiceState.questions.length;
     const current = total ? practiceState.currentIndex + 1 : 0;
-    progressText.textContent = "Question " + current + " of " + total;
+    let groupLabel = "";
+    if (total && practiceState.allQuestions.length) {
+      const start = practiceState.groupStart + 1;
+      const end = practiceState.groupStart + total;
+      groupLabel = " (" + makeGroupLabel(start, end) + ")";
+    }
+    progressText.textContent = "Question " + current + " of " + total + groupLabel;
     const pct = total > 0 ? (current / total) * 100 : 0;
     progressFill.style.width = pct + "%";
     const bar = progressFill.parentElement;
@@ -608,6 +673,7 @@
 
   async function initPracticeForChapter(chapterId) {
     practiceState.chapterId = chapterId;
+    practiceState.groupStart = 0;
     practiceState.currentIndex = 0;
     practiceState.answers = [];
     practiceState.answered = false;
@@ -616,8 +682,8 @@
     const questions = await ensureChapterLoaded(chapterId);
     showLoading(false);
 
-    practiceState.questions = questions;
-    showPracticeQuiz();
+    practiceState.allQuestions = questions;
+    renderPracticeGroups(questions.length);
 
     if (!questions.length) {
       progressText.textContent = "Question 0 of 0";
@@ -629,11 +695,14 @@
       return;
     }
 
-    btnNext.disabled = false;
-    renderPracticeQuestion();
+    selectPracticeGroup(0);
   }
 
   function restartPractice() {
+    if (practiceState.allQuestions.length) {
+      selectPracticeGroup(practiceState.groupStart);
+      return;
+    }
     initPracticeForChapter(chapterSelect.value);
   }
 
